@@ -52,7 +52,7 @@ Home
   <div class="container">
     <div class="row">
       <div class="intro col-sm-9 mx-auto">
-        <p>Flathunter helps you find somewhere to live in Berlin, by periodically fetching apartment listings from the major property portals (ImmoScout, ImmoWelt, Ebay Kleinanzeigen and WG Gesucht) and sending the details of apartments that match your criteria to you in a Telegram message.</p>
+        <p>Flathunter helps you find somewhere to live in Berlin, by periodically fetching rental listings from the major property portals (ImmoScout24, Immowelt, eBay Kleinanzeigen and WG-Gesucht) and sending the details of rentals that match your criteria to you in a Telegram message.</p>
       </div>
     </div>
   </div>
@@ -88,7 +88,6 @@ Home
 </div>
 
 <script>
-
 function toggle_notification() {
   const button = document.getElementsByClassName("toggle_notification")[0]
   var xhr = new XMLHttpRequest();
@@ -111,6 +110,5 @@ function toggle_notification() {
   xhr.open("POST", "/toggle_notifications");
   xhr.send();
 }
-
 </script>
 {% endblock %}

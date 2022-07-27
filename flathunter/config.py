@@ -23,8 +23,11 @@ class Config:
             self.config = yaml.safe_load(string)
         else:
             if filename is None:
-                filename = os.path.dirname(os.path.abspath(__file__)) + "/../config.yaml"
-            logger.info("Using config %s", filename)
+                root_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
+                filename = os.path.join(root_dir, 'config.yaml')
+
+            logger.info("Using config %s", os.path.abspath(filename))
+
             with open(filename, encoding="utf-8") as file:
                 self.config = yaml.safe_load(file)
         self.__searchers__ = []

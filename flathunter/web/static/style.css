@@ -1,8 +1,13 @@
-* {
+html, body {
+  height: 100%;
 }
 
 body {
-  background-image: linear-gradient(-90deg,#1251AE 0,#0074FF 50%,#1251AE 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  background-image: linear-gradient(-90deg, #1251AE 0, #0074FF 50%, #1251AE 100%);
   font-family: 'Roboto';
   font-size: 22px;
 }
@@ -72,18 +77,20 @@ form label {
   width: 50%;
   color: white;
 }
-
 .hunt-button.disabled {
   background: #aaaaaa;
   cursor: not-allowed;
 }
 
 .expose {
-  background-color: #bdbdf847;
   display: flex;
-  align-items: center;
   flex-direction: column;
   text-align: center;
+}
+
+.expose .expose-content {
+  background-color: #bdbdf847;
+  height: 100%;
 }
 
 .expose img {
@@ -140,11 +147,9 @@ button.toggle_notification {
   margin-top: 20px;
   margin-left: 20px;
 }
-
 button.toggle_notification.enabled {
   background-color: red;
 }
-
 button.toggle_notification.disabled {
   background-color: green;
 }
@@ -158,6 +163,9 @@ i.telegram_icon {
   color: #fff;
 }
 
+footer {
+  padding: 1rem;
+}
 footer img {
   height: 20px;
   margin: 2px 5px 5px 5px;
