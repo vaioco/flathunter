@@ -32,7 +32,7 @@ prompt-toolkit = "*"
 pyright = "*"
 types-beautifulsoup4 = "*"
 selenium = "*"
-gunicorn = "20.1.0"
+gunicorn = "21.2.0"
 
 [dev-packages]
 
