@@ -173,5 +173,13 @@ class SenderTelegram(Processor, Notifier):
             price=expose.get('price', 'N/A'),
             url=expose.get('url', 'N/A'),
             address=expose.get('address', 'N/A'),
-            durations=expose.get('durations', 'N/A')
+            durations=expose.get('durations', 'N/A'),
+            bathrooms=expose.get('bathrooms', 'N/A'),
+            lift=expose.get('lift', 'N/A'),
+            pricebyarea=expose.get('pricebyarea', 'N/A'),
+            district=expose.get('district', 'N/A'),
+            neighborhood=expose.get('neighborhood', 'N/A'),
+            status=expose.get('status', 'N/A'),
+            lat=expose.get('lat', 'N/A'),
+            long=expose.get('long', 'N/A'),
         ).strip()
