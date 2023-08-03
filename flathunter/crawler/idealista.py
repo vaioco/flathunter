@@ -1,8 +1,80 @@
 """Expose crawler for Idealista"""
 import re
-
+import requests
+import json
 from flathunter.logging import logger
 from flathunter.abstract_crawler import Crawler
+
+class CrawIdealistaAPI(Crawler):
+
+    APIv3URL = 'https://api.idealista.com/3.5/es/search'
+    URL_PATTERN = re.compile(r'https://api\.idealista\.com')
+    KEYS = ['propertyCode', 'thumbnail', 'url', 'title', 'price', 'size', 'rooms','district']
+    def __init__(self, config):
+        super().__init__(config)
+        self.config = config
+    
+    def get_page(self, search_url, driver=None, page_no=None):
+        post_data = {
+            'center': (None,'41.3874,2.1686'),
+            'propertyType':(None,'homes'),
+            'distance':(None,'15000'),
+            'locale':(None,'en'),
+            'operation':(None,'rent'),
+            'maxItems': (None,'50'),
+            'minSize': (None, '40'),
+            'flat': (None, True),
+            'maxPrice': (None, '2000'),
+            'order' : (None, 'publicationDate'),
+            'sort' : (None, 'desc'),
+            'furnished' : (None, 'furnished'),
+            # 'bankOffer' : (None, True),
+            'elevator' : (None, True),
+        }
+
+        ## TODO this is a tmp token
+        MYHEADERS = {
+        'Authorization': 'Bearer' + self.config.idealista_auth() ,        
+        }
+
+        resp = requests.post(search_url, files=post_data, headers=MYHEADERS, timeout=30)
+        if resp.status_code not in (200, 405):
+            user_agent = 'Unknown'
+            if 'User-Agent' in self.HEADERS:
+                user_agent = self.HEADERS['User-Agent']
+            logger.error("Got response (%i): %s\n%s",
+                         resp.status_code, resp.content, user_agent)
+        logger.debug('got resp status %d', resp.status_code)
+        return resp.json()   
+
+    def extract_data(self, jdata):
+        entries = []
+        for elem in jdata['elementList']:
+            logger.debug(elem)
+            details = {
+                'id': int(elem['propertyCode']),
+                'image': elem['thumbnail'],
+                'url': elem['url'],
+                'title': elem['description'][:500],
+                'price': str(elem['price']),
+                'size': str(elem['size']),
+                'rooms': str(elem['rooms']),
+                'address': elem['address'],
+                'lift': str(elem['hasLift']),
+                'pricebyarea': str(elem['priceByArea']),
+                'neighborhood': str(elem['neighborhood']),
+                'district': str(elem['district']),
+                'bathrooms': str(elem['bathrooms']),
+                'status': elem['status'],
+                'lat' : str(elem['latitude']),
+                'long' : str(elem['longitude']),
+                'crawler': self.get_name()
+            }
+            entries.append(details)            
+        logger.debug('total: %d', jdata['total'])
+        logger.debug('processed %d', len(entries))
+        return entries
+
 
 class CrawlIdealista(Crawler):
     """Implementation of Crawler interface for Idealista"""
