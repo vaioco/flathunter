@@ -10,7 +10,7 @@ from flathunter.captcha.captcha_solver import CaptchaSolver
 from flathunter.captcha.imagetyperz_solver import ImageTyperzSolver
 from flathunter.captcha.twocaptcha_solver import TwoCaptchaSolver
 from flathunter.crawler.ebaykleinanzeigen import CrawlEbayKleinanzeigen
-from flathunter.crawler.idealista import CrawlIdealista
+from flathunter.crawler.idealista import CrawlIdealista, CrawIdealistaAPI
 from flathunter.crawler.immobiliare import CrawlImmobiliare
 from flathunter.crawler.immobilienscout import CrawlImmobilienscout
 from flathunter.crawler.immowelt import CrawlImmowelt
@@ -124,7 +124,8 @@ Preis: {price}
             CrawlSubito(self),
             CrawlImmobiliare(self),
             CrawlIdealista(self),
-            CrawlMeineStadt(self)
+            CrawlMeineStadt(self),
+            CrawIdealistaAPI(self)
         ]
 
     def check_deprecated(self):
@@ -175,6 +176,9 @@ Preis: {price}
         builder = Filter.builder()
         builder.read_config(self)
         return builder.build()
+    
+    def idealista_auth(self):
+        return self._get_idealista_api_auth()
 
     def captcha_enabled(self):
         """Check if captcha is configured"""
@@ -276,6 +280,9 @@ Preis: {price}
         """Notification URLs for Apprise"""
         return self._read_yaml_path('apprise', [])
 
+    def _get_idealista_api_auth(self):
+        return self._read_yaml_path("idealista.apiauth", "")        
+
     def _get_imagetyperz_token(self):
         """API Token for Imagetyperz"""
         return self._read_yaml_path("captcha.imagetyperz.token", "")
@@ -366,6 +373,7 @@ Preis: {price}
             "telegram_bot_token": elide(self.telegram_bot_token()),
             "target_urls": self.target_urls(),
             "use_proxy": self.use_proxy(),
+            "idealista_auth": self._get_idealista_api_auth(),
         })
 
 
