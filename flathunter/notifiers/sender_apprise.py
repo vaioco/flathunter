@@ -15,23 +15,25 @@ class SenderApprise(Processor, Notifier):
     def process_expose(self, expose):
         """Send a message to a user describing the expose"""
         message = self.config.get('message', "").format(
-            crawler=expose['crawler'],
-            title=expose['title'],
-            rooms=expose['rooms'],
-            size=expose['size'],
-            price=expose['price'],
-            url=expose['url'],
-            address=expose['address'],
-            durations="" if 'durations' not in expose else expose['durations']).strip()
+            crawler=expose.get('crawler', 'N/A'),
+            title=expose.get('title', 'N/A'),
+            rooms=expose.get('rooms', 'N/A'),
+            size=expose.get('size', 'N/A'),
+            price=expose.get('price', 'N/A'),
+            url=expose.get('url', 'N/A'),
+            address=expose.get('address', 'N/A'),
+            durations=expose.get('durations', 'N/A')
+        ).strip()
         title = self.config.get('title', "").format(
-            crawler=expose['crawler'],
-            title=expose['title'],
-            rooms=expose['rooms'],
-            size=expose['size'],
-            price=expose['price'],
-            url=expose['url'],
-            address=expose['address'],
-            durations="" if 'durations' not in expose else expose['durations']).strip()
+            crawler=expose.get('crawler', 'N/A'),
+            title=expose.get('title', 'N/A'),
+            rooms=expose.get('rooms', 'N/A'),
+            size=expose.get('size', 'N/A'),
+            price=expose.get('price', 'N/A'),
+            url=expose.get('url', 'N/A'),
+            address=expose.get('address', 'N/A'),
+            durations=expose.get('durations', 'N/A')
+        ).strip()
         self.__send_msg(message, title)
         return expose
 
