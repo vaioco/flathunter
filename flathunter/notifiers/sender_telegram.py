@@ -167,6 +167,7 @@ class SenderTelegram(Processor, Notifier):
         """
 
         return self.config.message_format().format(
+            crawler=expose.get('crawler', 'N/A'),
             title=expose.get('title', 'N/A'),
             rooms=expose.get('rooms', 'N/A'),
             size=expose.get('size', 'N/A'),
