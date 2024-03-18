@@ -39,7 +39,7 @@ class SenderApprise(Processor, Notifier):
 
     def notify(self, message: str):
         """ Send the given message to users """
-        self.__send_msg(message=message)
+        self.__send_msg(message=message, title=None)
 
     def __send_msg(self, message, title):
         """Send messages to each of the Apprise urls"""
