@@ -1,14 +1,17 @@
+import os
+import json
+
 import unittest
+
 from flathunter.crawler.meinestadt import MeineStadt
 from test.utils.config import StringConfig
 
-
 class MeineStadtCrawlerTest(unittest.TestCase):
 
-    TEST_URL = 'https://www.meinestadt.de/freiburg-im-breisgau/immobilien'
+    TEST_URL = 'https://www.meinestadt.de/berlin/immobilien'
     DUMMY_CONFIG = """
     urls:
-        - https://www.meinestadt.de/freiburg-im-breisgau/immobilien
+        - https://www.meinestadt.de/berlin/immobilien
     """
 
     def setUp(self):
@@ -25,3 +28,10 @@ class MeineStadtCrawlerTest(unittest.TestCase):
             "https://www.meinestadt.de/expose"), u"URL should be an apartment link")
         for attr in ['title', 'price', 'size', 'rooms', 'address', 'image']:
             self.assertIsNotNone(entries[0][attr], attr + " should be set")
+
+    def test_load_expose_from_json(self):
+        results = {}
+        with open(os.path.join(os.path.dirname(__file__), "fixtures", "meinestadt.json")) as f:
+            results = json.load(f)
+        exposes = [ x for x in MeineStadt.process_json_list_to_exposes(results) if x is not None ]
+        self.assertEqual(20, len(exposes))

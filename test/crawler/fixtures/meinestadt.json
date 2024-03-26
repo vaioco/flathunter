@@ -1,0 +1,1542 @@
+[
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Apartment",
+        "@id": "https://www.meinestadt.de/expose/861688",
+        "name": "möbliertes Apartment",
+        "url": "https://www.meinestadt.de/expose/861688",
+        "description": "Typ: Mieten. Eigenschaften: Keller, Personenaufzug",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2F30377ace63.jpg&w=400&h=400&sign=61ad694cd5b2c9d77c48f9ce2b462e83",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 52.53266,
+          "longitude": 13.39858,
+          "postalCode": "10115",
+          "address": {
+            "@type": "PostalAddress",
+            "name": "10115 Berlin"
+          }
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "name": "10115 Berlin"
+        },
+        "numberOfRooms": {
+          "@type": "QuantitativeValue",
+          "value": 2
+        },
+        "floorSize": {
+          "@type": "QuantitativeValue",
+          "value": 65
+        }
+      },
+      {
+        "@type": "RealEstateListing",
+        "@id": "https://www.meinestadt.de/expose/861688",
+        "name": "möbliertes Apartment",
+        "url": "https://www.meinestadt.de/expose/861688",
+        "description": "Typ: Mieten. Eigenschaften: Keller, Personenaufzug",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2F30377ace63.jpg&w=400&h=400&sign=61ad694cd5b2c9d77c48f9ce2b462e83",
+        "contentLocation": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "postalCode": "10115",
+            "streetAddress": "10115 Berlin"
+          },
+          "latitude": 52.53266,
+          "longitude": 13.39858,
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.53266,
+            "longitude": 13.39858,
+            "postalCode": "10115",
+            "address": {
+              "@type": "PostalAddress",
+              "name": "10115 Berlin"
+            }
+          }
+        },
+        "offers": {
+          "@type": "Offer",
+          "businessFunction": {
+            "@type": "BusinessFunction",
+            "@id": "http://purl.org/goodrelations/v1#LeaseOut"
+          },
+          "priceCurrency": "EUR",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "unitCode": "MON",
+            "description": "EUR Kaltmiete",
+            "price": "2.060"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Apartment",
+        "@id": "https://www.meinestadt.de/expose/861687",
+        "name": "Hell, ruhig und modern",
+        "url": "https://www.meinestadt.de/expose/861687",
+        "description": "Typ: Mieten. Eigenschaften: Keller, Personenaufzug",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2F30377ace63.jpg&w=400&h=400&sign=61ad694cd5b2c9d77c48f9ce2b462e83",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 52.53266,
+          "longitude": 13.39858,
+          "postalCode": "10115",
+          "address": {
+            "@type": "PostalAddress",
+            "name": "10115 Berlin"
+          }
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "name": "10115 Berlin"
+        },
+        "numberOfRooms": {
+          "@type": "QuantitativeValue",
+          "value": 2
+        },
+        "floorSize": {
+          "@type": "QuantitativeValue",
+          "value": 65
+        }
+      },
+      {
+        "@type": "RealEstateListing",
+        "@id": "https://www.meinestadt.de/expose/861687",
+        "name": "Hell, ruhig und modern",
+        "url": "https://www.meinestadt.de/expose/861687",
+        "description": "Typ: Mieten. Eigenschaften: Keller, Personenaufzug",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2F30377ace63.jpg&w=400&h=400&sign=61ad694cd5b2c9d77c48f9ce2b462e83",
+        "contentLocation": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "postalCode": "10115",
+            "streetAddress": "10115 Berlin"
+          },
+          "latitude": 52.53266,
+          "longitude": 13.39858,
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.53266,
+            "longitude": 13.39858,
+            "postalCode": "10115",
+            "address": {
+              "@type": "PostalAddress",
+              "name": "10115 Berlin"
+            }
+          }
+        },
+        "offers": {
+          "@type": "Offer",
+          "businessFunction": {
+            "@type": "BusinessFunction",
+            "@id": "http://purl.org/goodrelations/v1#LeaseOut"
+          },
+          "priceCurrency": "EUR",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "unitCode": "MON",
+            "description": "EUR Kaltmiete",
+            "price": "2.266"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Apartment",
+        "@id": "https://www.meinestadt.de/expose/2432632",
+        "name": "Mitte: LUXUS 2-Zi-NEUBAU-Wohnung mit Terrasse - befristet, möbliert und per SOFORT zu VERMIETEN",
+        "url": "https://www.meinestadt.de/expose/2432632",
+        "description": "Typ: Mieten. Eigenschaften: Keller, Personenaufzug. Bezugsfertig: 21.03.2024",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2Fa2b64a729f.jpg&w=400&h=400&sign=c334d49bb08cf0dc4178f282dd8fa2f9",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 52.51066,
+          "longitude": 13.41664,
+          "postalCode": "10179",
+          "address": {
+            "@type": "PostalAddress",
+            "name": "10179 Berlin"
+          }
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "name": "10179 Berlin"
+        },
+        "numberOfRooms": {
+          "@type": "QuantitativeValue",
+          "value": 2
+        },
+        "floorSize": {
+          "@type": "QuantitativeValue",
+          "value": 34
+        }
+      },
+      {
+        "@type": "RealEstateListing",
+        "@id": "https://www.meinestadt.de/expose/2432632",
+        "name": "Mitte: LUXUS 2-Zi-NEUBAU-Wohnung mit Terrasse - befristet, möbliert und per SOFORT zu VERMIETEN",
+        "url": "https://www.meinestadt.de/expose/2432632",
+        "description": "Typ: Mieten. Eigenschaften: Keller, Personenaufzug. Bezugsfertig: 21.03.2024",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2Fa2b64a729f.jpg&w=400&h=400&sign=c334d49bb08cf0dc4178f282dd8fa2f9",
+        "contentLocation": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "postalCode": "10179",
+            "streetAddress": "10179 Berlin"
+          },
+          "latitude": 52.51066,
+          "longitude": 13.41664,
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.51066,
+            "longitude": 13.41664,
+            "postalCode": "10179",
+            "address": {
+              "@type": "PostalAddress",
+              "name": "10179 Berlin"
+            }
+          }
+        },
+        "offers": {
+          "@type": "Offer",
+          "businessFunction": {
+            "@type": "BusinessFunction",
+            "@id": "http://purl.org/goodrelations/v1#LeaseOut"
+          },
+          "priceCurrency": "EUR",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "unitCode": "MON",
+            "description": "EUR Kaltmiete",
+            "price": "1.150"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Apartment",
+        "@id": "https://www.meinestadt.de/expose/943018",
+        "name": "Mitte: LUXUS 2-Zi-NEUBAU-Wohnung mit Terrasse - befristet, möbliert und per SOFORT zu VERMIETEN",
+        "url": "https://www.meinestadt.de/expose/943018",
+        "description": "Typ: Mieten. Eigenschaften: Keller, Personenaufzug. Bezugsfertig: 20.03.2024",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2Fca6efe2496.jpg&w=400&h=400&sign=b733293cade96a8f9f9b043cab49bf6a",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 52.51066,
+          "longitude": 13.41664,
+          "postalCode": "10179",
+          "address": {
+            "@type": "PostalAddress",
+            "name": "10179 Berlin"
+          }
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "name": "10179 Berlin"
+        },
+        "numberOfRooms": {
+          "@type": "QuantitativeValue",
+          "value": 2
+        },
+        "floorSize": {
+          "@type": "QuantitativeValue",
+          "value": 34
+        }
+      },
+      {
+        "@type": "RealEstateListing",
+        "@id": "https://www.meinestadt.de/expose/943018",
+        "name": "Mitte: LUXUS 2-Zi-NEUBAU-Wohnung mit Terrasse - befristet, möbliert und per SOFORT zu VERMIETEN",
+        "url": "https://www.meinestadt.de/expose/943018",
+        "description": "Typ: Mieten. Eigenschaften: Keller, Personenaufzug. Bezugsfertig: 20.03.2024",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2Fca6efe2496.jpg&w=400&h=400&sign=b733293cade96a8f9f9b043cab49bf6a",
+        "contentLocation": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "postalCode": "10179",
+            "streetAddress": "10179 Berlin"
+          },
+          "latitude": 52.51066,
+          "longitude": 13.41664,
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.51066,
+            "longitude": 13.41664,
+            "postalCode": "10179",
+            "address": {
+              "@type": "PostalAddress",
+              "name": "10179 Berlin"
+            }
+          }
+        },
+        "offers": {
+          "@type": "Offer",
+          "businessFunction": {
+            "@type": "BusinessFunction",
+            "@id": "http://purl.org/goodrelations/v1#LeaseOut"
+          },
+          "priceCurrency": "EUR",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "unitCode": "MON",
+            "description": "EUR Kaltmiete",
+            "price": "1.150"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Apartment",
+        "@id": "https://www.meinestadt.de/expose/1043381",
+        "name": "Luxuriöses Wohnen AM TACHELES - Erstbezug im Form³",
+        "url": "https://www.meinestadt.de/expose/1043381",
+        "description": "Typ: Mieten. Eigenschaften: Keller, Barrierefrei / für Senioren, Einbauküche, Personenaufzug, Swimmingpool, Sauna, provisionsfrei",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2F309d8dd6ab.jpg&w=400&h=400&sign=57ef4ed82f6da41920603798592f59d8",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 52.52499,
+          "longitude": 13.38969,
+          "postalCode": "10117",
+          "address": {
+            "@type": "PostalAddress",
+            "name": "10117 Berlin"
+          }
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "name": "10117 Berlin"
+        },
+        "numberOfRooms": {
+          "@type": "QuantitativeValue",
+          "value": 2
+        },
+        "floorSize": {
+          "@type": "QuantitativeValue",
+          "value": 83
+        }
+      },
+      {
+        "@type": "RealEstateListing",
+        "@id": "https://www.meinestadt.de/expose/1043381",
+        "name": "Luxuriöses Wohnen AM TACHELES - Erstbezug im Form³",
+        "url": "https://www.meinestadt.de/expose/1043381",
+        "description": "Typ: Mieten. Eigenschaften: Keller, Barrierefrei / für Senioren, Einbauküche, Personenaufzug, Swimmingpool, Sauna, provisionsfrei",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2F309d8dd6ab.jpg&w=400&h=400&sign=57ef4ed82f6da41920603798592f59d8",
+        "contentLocation": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "postalCode": "10117",
+            "streetAddress": "10117 Berlin"
+          },
+          "latitude": 52.52499,
+          "longitude": 13.38969,
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.52499,
+            "longitude": 13.38969,
+            "postalCode": "10117",
+            "address": {
+              "@type": "PostalAddress",
+              "name": "10117 Berlin"
+            }
+          }
+        },
+        "offers": {
+          "@type": "Offer",
+          "businessFunction": {
+            "@type": "BusinessFunction",
+            "@id": "http://purl.org/goodrelations/v1#LeaseOut"
+          },
+          "priceCurrency": "EUR",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "unitCode": "MON",
+            "description": "EUR Kaltmiete",
+            "price": "3.050"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Apartment",
+        "@id": "https://www.meinestadt.de/expose/2300578",
+        "name": "WUNDERSCHÖNE - 4 ZIMMER WOHNUNG IM 5. OG - BALKON SÜD-/WESTAUSRICHTUNG - EINBAUKÜCHE - AB 01.05.2024",
+        "url": "https://www.meinestadt.de/expose/2300578",
+        "description": "Typ: Mieten. Eigenschaften: Balkon / Terrasse, Keller, Einbauküche, Garage / Stellplatz, Personenaufzug, provisionsfrei",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2F974623937f.jpg&w=400&h=400&sign=7b7a6a9082de190bc45a80aeececa9f6",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 52.5229043,
+          "longitude": 13.4370565,
+          "postalCode": "10249",
+          "address": {
+            "@type": "PostalAddress",
+            "name": "10249 Berlin"
+          }
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "name": "10249 Berlin"
+        },
+        "numberOfRooms": {
+          "@type": "QuantitativeValue",
+          "value": 4
+        },
+        "floorSize": {
+          "@type": "QuantitativeValue",
+          "value": 99
+        }
+      },
+      {
+        "@type": "RealEstateListing",
+        "@id": "https://www.meinestadt.de/expose/2300578",
+        "name": "WUNDERSCHÖNE - 4 ZIMMER WOHNUNG IM 5. OG - BALKON SÜD-/WESTAUSRICHTUNG - EINBAUKÜCHE - AB 01.05.2024",
+        "url": "https://www.meinestadt.de/expose/2300578",
+        "description": "Typ: Mieten. Eigenschaften: Balkon / Terrasse, Keller, Einbauküche, Garage / Stellplatz, Personenaufzug, provisionsfrei",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2F974623937f.jpg&w=400&h=400&sign=7b7a6a9082de190bc45a80aeececa9f6",
+        "contentLocation": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "postalCode": "10249",
+            "streetAddress": "10249 Berlin"
+          },
+          "latitude": 52.5229043,
+          "longitude": 13.4370565,
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.5229043,
+            "longitude": 13.4370565,
+            "postalCode": "10249",
+            "address": {
+              "@type": "PostalAddress",
+              "name": "10249 Berlin"
+            }
+          }
+        },
+        "offers": {
+          "@type": "Offer",
+          "businessFunction": {
+            "@type": "BusinessFunction",
+            "@id": "http://purl.org/goodrelations/v1#LeaseOut"
+          },
+          "priceCurrency": "EUR",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "unitCode": "MON",
+            "description": "EUR Kaltmiete",
+            "price": "2.850"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Apartment",
+        "@id": "https://www.meinestadt.de/expose/1338496",
+        "name": "Helle, ruhige Wohnung Nähe Gendarmenmarkt",
+        "url": "https://www.meinestadt.de/expose/1338496",
+        "description": "Typ: Mieten. Eigenschaften: Einbauküche, Personenaufzug, Balkon / Terrasse, Gäste WC, Keller, Barrierefrei / für Senioren, Bad mit Fenster, Bad mit Wanne, Neubau, Garage / Stellplatz, Rollstuhlgerecht, Abstellraum. Bezugsfertig: 01.04.2024",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2F919e297a95.jpg&w=400&h=400&sign=48bb39d3e9063643a5d447aeeafd9cee",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 52.5108156,
+          "longitude": 13.3855098,
+          "postalCode": "10117",
+          "address": {
+            "@type": "PostalAddress",
+            "name": "10117 Berlin-Mitte"
+          }
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "name": "10117 Berlin-Mitte"
+        },
+        "numberOfRooms": {
+          "@type": "QuantitativeValue",
+          "value": 3
+        },
+        "floorSize": {
+          "@type": "QuantitativeValue",
+          "value": 141
+        }
+      },
+      {
+        "@type": "RealEstateListing",
+        "@id": "https://www.meinestadt.de/expose/1338496",
+        "name": "Helle, ruhige Wohnung Nähe Gendarmenmarkt",
+        "url": "https://www.meinestadt.de/expose/1338496",
+        "description": "Typ: Mieten. Eigenschaften: Einbauküche, Personenaufzug, Balkon / Terrasse, Gäste WC, Keller, Barrierefrei / für Senioren, Bad mit Fenster, Bad mit Wanne, Neubau, Garage / Stellplatz, Rollstuhlgerecht, Abstellraum. Bezugsfertig: 01.04.2024",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2F919e297a95.jpg&w=400&h=400&sign=48bb39d3e9063643a5d447aeeafd9cee",
+        "contentLocation": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "postalCode": "10117",
+            "streetAddress": "10117 Berlin-Mitte"
+          },
+          "latitude": 52.5108156,
+          "longitude": 13.3855098,
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.5108156,
+            "longitude": 13.3855098,
+            "postalCode": "10117",
+            "address": {
+              "@type": "PostalAddress",
+              "name": "10117 Berlin-Mitte"
+            }
+          }
+        },
+        "offers": {
+          "@type": "Offer",
+          "businessFunction": {
+            "@type": "BusinessFunction",
+            "@id": "http://purl.org/goodrelations/v1#LeaseOut"
+          },
+          "priceCurrency": "EUR",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "unitCode": "MON",
+            "description": "EUR Kaltmiete",
+            "price": "1.850"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Apartment",
+        "@id": "https://www.meinestadt.de/expose/1003912",
+        "name": "ERSTBEZUG! Wunderschönes Townhouse mit 5 Zimmern, Dachterrasse und EBK in Premium-Lage in Mitte!",
+        "url": "https://www.meinestadt.de/expose/1003912",
+        "description": "Typ: Mieten. Eigenschaften: keine Angabe",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2F9629c6373e.jpg&w=400&h=400&sign=9ea5768d10f3a87610483e0662841f4f",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 52.50761,
+          "longitude": 13.38881,
+          "postalCode": "10117",
+          "address": {
+            "@type": "PostalAddress",
+            "name": "10117 Berlin"
+          }
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "name": "10117 Berlin"
+        },
+        "numberOfRooms": {
+          "@type": "QuantitativeValue",
+          "value": 5
+        },
+        "floorSize": {
+          "@type": "QuantitativeValue",
+          "value": 206
+        }
+      },
+      {
+        "@type": "RealEstateListing",
+        "@id": "https://www.meinestadt.de/expose/1003912",
+        "name": "ERSTBEZUG! Wunderschönes Townhouse mit 5 Zimmern, Dachterrasse und EBK in Premium-Lage in Mitte!",
+        "url": "https://www.meinestadt.de/expose/1003912",
+        "description": "Typ: Mieten. Eigenschaften: keine Angabe",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2F9629c6373e.jpg&w=400&h=400&sign=9ea5768d10f3a87610483e0662841f4f",
+        "contentLocation": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "postalCode": "10117",
+            "streetAddress": "10117 Berlin"
+          },
+          "latitude": 52.50761,
+          "longitude": 13.38881,
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.50761,
+            "longitude": 13.38881,
+            "postalCode": "10117",
+            "address": {
+              "@type": "PostalAddress",
+              "name": "10117 Berlin"
+            }
+          }
+        },
+        "offers": {
+          "@type": "Offer",
+          "businessFunction": {
+            "@type": "BusinessFunction",
+            "@id": "http://purl.org/goodrelations/v1#LeaseOut"
+          },
+          "priceCurrency": "EUR",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "unitCode": "MON",
+            "description": "EUR Kaltmiete",
+            "price": "4.200"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Apartment",
+        "@id": "https://www.meinestadt.de/expose/1924863",
+        "name": "Traumhaft helle und gemütliche 2 Zimmer Wohnung mit ca. 61m², EBK und Balkon in Berlin-Mitte!",
+        "url": "https://www.meinestadt.de/expose/1924863",
+        "description": "Typ: Mieten. Eigenschaften: Personenaufzug, provisionsfrei",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2Ff6389e73b8.jpg&w=400&h=400&sign=6b61fb9f95e89c84a841d9741d4a8283",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 52.5076,
+          "longitude": 13.3888,
+          "postalCode": "10117",
+          "address": {
+            "@type": "PostalAddress",
+            "name": "10117 Berlin"
+          }
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "name": "10117 Berlin"
+        },
+        "numberOfRooms": {
+          "@type": "QuantitativeValue",
+          "value": 2
+        },
+        "floorSize": {
+          "@type": "QuantitativeValue",
+          "value": 61
+        }
+      },
+      {
+        "@type": "RealEstateListing",
+        "@id": "https://www.meinestadt.de/expose/1924863",
+        "name": "Traumhaft helle und gemütliche 2 Zimmer Wohnung mit ca. 61m², EBK und Balkon in Berlin-Mitte!",
+        "url": "https://www.meinestadt.de/expose/1924863",
+        "description": "Typ: Mieten. Eigenschaften: Personenaufzug, provisionsfrei",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2Ff6389e73b8.jpg&w=400&h=400&sign=6b61fb9f95e89c84a841d9741d4a8283",
+        "contentLocation": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "postalCode": "10117",
+            "streetAddress": "10117 Berlin"
+          },
+          "latitude": 52.5076,
+          "longitude": 13.3888,
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.5076,
+            "longitude": 13.3888,
+            "postalCode": "10117",
+            "address": {
+              "@type": "PostalAddress",
+              "name": "10117 Berlin"
+            }
+          }
+        },
+        "offers": {
+          "@type": "Offer",
+          "businessFunction": {
+            "@type": "BusinessFunction",
+            "@id": "http://purl.org/goodrelations/v1#LeaseOut"
+          },
+          "priceCurrency": "EUR",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "unitCode": "MON",
+            "description": "EUR Kaltmiete",
+            "price": "1.650"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Apartment",
+        "@id": "https://www.meinestadt.de/expose/2379049",
+        "name": "Ruhige und praktisch geschnittene 2 Zimmer Wohnung mit ca. 51m², EBK und großem Balkon in Mitte!",
+        "url": "https://www.meinestadt.de/expose/2379049",
+        "description": "Typ: Mieten. Eigenschaften: Personenaufzug, provisionsfrei",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2F8b01e86a6c.jpg&w=400&h=400&sign=c2f535bde063ce1169163bb370d30921",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 52.5076,
+          "longitude": 13.3888,
+          "postalCode": "10117",
+          "address": {
+            "@type": "PostalAddress",
+            "name": "10117 Berlin"
+          }
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "name": "10117 Berlin"
+        },
+        "numberOfRooms": {
+          "@type": "QuantitativeValue",
+          "value": 2
+        },
+        "floorSize": {
+          "@type": "QuantitativeValue",
+          "value": 51
+        }
+      },
+      {
+        "@type": "RealEstateListing",
+        "@id": "https://www.meinestadt.de/expose/2379049",
+        "name": "Ruhige und praktisch geschnittene 2 Zimmer Wohnung mit ca. 51m², EBK und großem Balkon in Mitte!",
+        "url": "https://www.meinestadt.de/expose/2379049",
+        "description": "Typ: Mieten. Eigenschaften: Personenaufzug, provisionsfrei",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2F8b01e86a6c.jpg&w=400&h=400&sign=c2f535bde063ce1169163bb370d30921",
+        "contentLocation": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "postalCode": "10117",
+            "streetAddress": "10117 Berlin"
+          },
+          "latitude": 52.5076,
+          "longitude": 13.3888,
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.5076,
+            "longitude": 13.3888,
+            "postalCode": "10117",
+            "address": {
+              "@type": "PostalAddress",
+              "name": "10117 Berlin"
+            }
+          }
+        },
+        "offers": {
+          "@type": "Offer",
+          "businessFunction": {
+            "@type": "BusinessFunction",
+            "@id": "http://purl.org/goodrelations/v1#LeaseOut"
+          },
+          "priceCurrency": "EUR",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "unitCode": "MON",
+            "description": "EUR Kaltmiete",
+            "price": "1.450"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Apartment",
+        "@id": "https://www.meinestadt.de/expose/2385045",
+        "name": "GUT GESCHNITTENE - 3 ZIMMERWOHNUNG - BALKON -  EINBAUKÜCHE - TG STELLPLATZ - FREI AB 01.06.2024",
+        "url": "https://www.meinestadt.de/expose/2385045",
+        "description": "Typ: Mieten. Eigenschaften: Balkon / Terrasse, Keller, Einbauküche, Personenaufzug",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2F91a9c198be.JPG&w=400&h=400&sign=1e6837b462308c33677cd615df8dcf77",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 52.528971,
+          "longitude": 13.4462261,
+          "postalCode": "10407",
+          "address": {
+            "@type": "PostalAddress",
+            "name": "10407 Berlin"
+          }
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "name": "10407 Berlin"
+        },
+        "numberOfRooms": {
+          "@type": "QuantitativeValue",
+          "value": 3
+        },
+        "floorSize": {
+          "@type": "QuantitativeValue",
+          "value": 94
+        }
+      },
+      {
+        "@type": "RealEstateListing",
+        "@id": "https://www.meinestadt.de/expose/2385045",
+        "name": "GUT GESCHNITTENE - 3 ZIMMERWOHNUNG - BALKON -  EINBAUKÜCHE - TG STELLPLATZ - FREI AB 01.06.2024",
+        "url": "https://www.meinestadt.de/expose/2385045",
+        "description": "Typ: Mieten. Eigenschaften: Balkon / Terrasse, Keller, Einbauküche, Personenaufzug",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2F91a9c198be.JPG&w=400&h=400&sign=1e6837b462308c33677cd615df8dcf77",
+        "contentLocation": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "postalCode": "10407",
+            "streetAddress": "10407 Berlin"
+          },
+          "latitude": 52.528971,
+          "longitude": 13.4462261,
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.528971,
+            "longitude": 13.4462261,
+            "postalCode": "10407",
+            "address": {
+              "@type": "PostalAddress",
+              "name": "10407 Berlin"
+            }
+          }
+        },
+        "offers": {
+          "@type": "Offer",
+          "businessFunction": {
+            "@type": "BusinessFunction",
+            "@id": "http://purl.org/goodrelations/v1#LeaseOut"
+          },
+          "priceCurrency": "EUR",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "unitCode": "MON",
+            "description": "EUR Kaltmiete",
+            "price": "2.500"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Apartment",
+        "@id": "https://www.meinestadt.de/expose/1326763",
+        "name": "Wunderschöne 4 Zimmer Wohnung mit ca. 98m², EBK, Fußbodenheizung in Berlin-Mitte!",
+        "url": "https://www.meinestadt.de/expose/1326763",
+        "description": "Typ: Mieten. Eigenschaften: Personenaufzug, provisionsfrei",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2Fc4892c9cf1.jpg&w=400&h=400&sign=f9a8f860d90dc2dafa22defc86c52e20",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 52.5079,
+          "longitude": 13.3876,
+          "postalCode": "10117",
+          "address": {
+            "@type": "PostalAddress",
+            "name": "10117 Berlin"
+          }
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "name": "10117 Berlin"
+        },
+        "numberOfRooms": {
+          "@type": "QuantitativeValue",
+          "value": 4
+        },
+        "floorSize": {
+          "@type": "QuantitativeValue",
+          "value": 98
+        }
+      },
+      {
+        "@type": "RealEstateListing",
+        "@id": "https://www.meinestadt.de/expose/1326763",
+        "name": "Wunderschöne 4 Zimmer Wohnung mit ca. 98m², EBK, Fußbodenheizung in Berlin-Mitte!",
+        "url": "https://www.meinestadt.de/expose/1326763",
+        "description": "Typ: Mieten. Eigenschaften: Personenaufzug, provisionsfrei",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2Fc4892c9cf1.jpg&w=400&h=400&sign=f9a8f860d90dc2dafa22defc86c52e20",
+        "contentLocation": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "postalCode": "10117",
+            "streetAddress": "10117 Berlin"
+          },
+          "latitude": 52.5079,
+          "longitude": 13.3876,
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.5079,
+            "longitude": 13.3876,
+            "postalCode": "10117",
+            "address": {
+              "@type": "PostalAddress",
+              "name": "10117 Berlin"
+            }
+          }
+        },
+        "offers": {
+          "@type": "Offer",
+          "businessFunction": {
+            "@type": "BusinessFunction",
+            "@id": "http://purl.org/goodrelations/v1#LeaseOut"
+          },
+          "priceCurrency": "EUR",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "unitCode": "MON",
+            "description": "EUR Kaltmiete",
+            "price": "2.400"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Apartment",
+        "@id": "https://www.meinestadt.de/expose/1078837",
+        "name": "Großzügige 4 Zimmer Wohnung mit ca. 87m², EBK und Balkon in Berlin-Mitte!",
+        "url": "https://www.meinestadt.de/expose/1078837",
+        "description": "Typ: Mieten. Eigenschaften: Personenaufzug, provisionsfrei",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2F3d434b2f84.jpg&w=400&h=400&sign=3b733a63f9b61362fdb79716055454fa",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 52.50808,
+          "longitude": 13.3871,
+          "postalCode": "10117",
+          "address": {
+            "@type": "PostalAddress",
+            "name": "10117 Berlin"
+          }
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "name": "10117 Berlin"
+        },
+        "numberOfRooms": {
+          "@type": "QuantitativeValue",
+          "value": 4
+        },
+        "floorSize": {
+          "@type": "QuantitativeValue",
+          "value": 87
+        }
+      },
+      {
+        "@type": "RealEstateListing",
+        "@id": "https://www.meinestadt.de/expose/1078837",
+        "name": "Großzügige 4 Zimmer Wohnung mit ca. 87m², EBK und Balkon in Berlin-Mitte!",
+        "url": "https://www.meinestadt.de/expose/1078837",
+        "description": "Typ: Mieten. Eigenschaften: Personenaufzug, provisionsfrei",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2F3d434b2f84.jpg&w=400&h=400&sign=3b733a63f9b61362fdb79716055454fa",
+        "contentLocation": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "postalCode": "10117",
+            "streetAddress": "10117 Berlin"
+          },
+          "latitude": 52.50808,
+          "longitude": 13.3871,
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.50808,
+            "longitude": 13.3871,
+            "postalCode": "10117",
+            "address": {
+              "@type": "PostalAddress",
+              "name": "10117 Berlin"
+            }
+          }
+        },
+        "offers": {
+          "@type": "Offer",
+          "businessFunction": {
+            "@type": "BusinessFunction",
+            "@id": "http://purl.org/goodrelations/v1#LeaseOut"
+          },
+          "priceCurrency": "EUR",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "unitCode": "MON",
+            "description": "EUR Kaltmiete",
+            "price": "2.500"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Apartment",
+        "@id": "https://www.meinestadt.de/expose/2379050",
+        "name": "Toll geschnittene 3 Zimmer Wohnung mit ca. 80m², EBK und Balkon mit grünem Ausblick direkt in Mitte!",
+        "url": "https://www.meinestadt.de/expose/2379050",
+        "description": "Typ: Mieten. Eigenschaften: Personenaufzug, provisionsfrei",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2Fcec5983b50.jpg&w=400&h=400&sign=683fa451c56526ca2856c7318fd6e1e0",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 52.50808,
+          "longitude": 13.3871,
+          "postalCode": "10117",
+          "address": {
+            "@type": "PostalAddress",
+            "name": "10117 Berlin"
+          }
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "name": "10117 Berlin"
+        },
+        "numberOfRooms": {
+          "@type": "QuantitativeValue",
+          "value": 3
+        },
+        "floorSize": {
+          "@type": "QuantitativeValue",
+          "value": 80
+        }
+      },
+      {
+        "@type": "RealEstateListing",
+        "@id": "https://www.meinestadt.de/expose/2379050",
+        "name": "Toll geschnittene 3 Zimmer Wohnung mit ca. 80m², EBK und Balkon mit grünem Ausblick direkt in Mitte!",
+        "url": "https://www.meinestadt.de/expose/2379050",
+        "description": "Typ: Mieten. Eigenschaften: Personenaufzug, provisionsfrei",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2Fcec5983b50.jpg&w=400&h=400&sign=683fa451c56526ca2856c7318fd6e1e0",
+        "contentLocation": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "postalCode": "10117",
+            "streetAddress": "10117 Berlin"
+          },
+          "latitude": 52.50808,
+          "longitude": 13.3871,
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.50808,
+            "longitude": 13.3871,
+            "postalCode": "10117",
+            "address": {
+              "@type": "PostalAddress",
+              "name": "10117 Berlin"
+            }
+          }
+        },
+        "offers": {
+          "@type": "Offer",
+          "businessFunction": {
+            "@type": "BusinessFunction",
+            "@id": "http://purl.org/goodrelations/v1#LeaseOut"
+          },
+          "priceCurrency": "EUR",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "unitCode": "MON",
+            "description": "EUR Kaltmiete",
+            "price": "1.950"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Apartment",
+        "@id": "https://www.meinestadt.de/expose/2553502",
+        "name": "Highlight-Wohnung mit 4 Zimmern, ca. 119m², EBK und umlaufendem Balkon in Berlin-Mitte!",
+        "url": "https://www.meinestadt.de/expose/2553502",
+        "description": "Typ: Mieten. Eigenschaften: Personenaufzug",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2F8ce5b0b7d9.jpg&w=400&h=400&sign=6da1bab1efca3f44f0548f68de6f65c6",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 52.50808,
+          "longitude": 13.3871,
+          "postalCode": "10117",
+          "address": {
+            "@type": "PostalAddress",
+            "name": "10117 Berlin"
+          }
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "name": "10117 Berlin"
+        },
+        "numberOfRooms": {
+          "@type": "QuantitativeValue",
+          "value": 4
+        },
+        "floorSize": {
+          "@type": "QuantitativeValue",
+          "value": 119
+        }
+      },
+      {
+        "@type": "RealEstateListing",
+        "@id": "https://www.meinestadt.de/expose/2553502",
+        "name": "Highlight-Wohnung mit 4 Zimmern, ca. 119m², EBK und umlaufendem Balkon in Berlin-Mitte!",
+        "url": "https://www.meinestadt.de/expose/2553502",
+        "description": "Typ: Mieten. Eigenschaften: Personenaufzug",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2F8ce5b0b7d9.jpg&w=400&h=400&sign=6da1bab1efca3f44f0548f68de6f65c6",
+        "contentLocation": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "postalCode": "10117",
+            "streetAddress": "10117 Berlin"
+          },
+          "latitude": 52.50808,
+          "longitude": 13.3871,
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.50808,
+            "longitude": 13.3871,
+            "postalCode": "10117",
+            "address": {
+              "@type": "PostalAddress",
+              "name": "10117 Berlin"
+            }
+          }
+        },
+        "offers": {
+          "@type": "Offer",
+          "businessFunction": {
+            "@type": "BusinessFunction",
+            "@id": "http://purl.org/goodrelations/v1#LeaseOut"
+          },
+          "priceCurrency": "EUR",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "unitCode": "MON",
+            "description": "EUR Kaltmiete",
+            "price": "3.100"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Apartment",
+        "@id": "https://www.meinestadt.de/expose/1063885",
+        "name": "Modernster Neubau nah dem Himmel in bester Lage!",
+        "url": "https://www.meinestadt.de/expose/1063885",
+        "description": "Typ: Mieten. Eigenschaften: Balkon / Terrasse, Keller, Einbauküche, Personenaufzug, Kabel TV",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2Fcabd66e2a7.jpg&w=400&h=400&sign=c09042159fc9270bcad0f8e393766318",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 52.49582,
+          "longitude": 13.39863,
+          "postalCode": "10961",
+          "address": {
+            "@type": "PostalAddress",
+            "name": "10961 Berlin"
+          }
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "name": "10961 Berlin"
+        },
+        "numberOfRooms": {
+          "@type": "QuantitativeValue",
+          "value": 3
+        },
+        "floorSize": {
+          "@type": "QuantitativeValue",
+          "value": 97
+        }
+      },
+      {
+        "@type": "RealEstateListing",
+        "@id": "https://www.meinestadt.de/expose/1063885",
+        "name": "Modernster Neubau nah dem Himmel in bester Lage!",
+        "url": "https://www.meinestadt.de/expose/1063885",
+        "description": "Typ: Mieten. Eigenschaften: Balkon / Terrasse, Keller, Einbauküche, Personenaufzug, Kabel TV",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2Fcabd66e2a7.jpg&w=400&h=400&sign=c09042159fc9270bcad0f8e393766318",
+        "contentLocation": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "postalCode": "10961",
+            "streetAddress": "10961 Berlin"
+          },
+          "latitude": 52.49582,
+          "longitude": 13.39863,
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.49582,
+            "longitude": 13.39863,
+            "postalCode": "10961",
+            "address": {
+              "@type": "PostalAddress",
+              "name": "10961 Berlin"
+            }
+          }
+        },
+        "offers": {
+          "@type": "Offer",
+          "businessFunction": {
+            "@type": "BusinessFunction",
+            "@id": "http://purl.org/goodrelations/v1#LeaseOut"
+          },
+          "priceCurrency": "EUR",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "unitCode": "MON",
+            "description": "EUR Kaltmiete",
+            "price": "2.500"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Apartment",
+        "@id": "https://www.meinestadt.de/expose/1855366",
+        "name": "***Moderne Wohnung, unmöbliert und unbefristet***",
+        "url": "https://www.meinestadt.de/expose/1855366",
+        "description": "Typ: Mieten. Eigenschaften: Keller, Einbauküche, Personenaufzug, Abstellraum. Bezugsfertig: 01.05.2024",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2F50854d7821.jpg&w=400&h=400&sign=68bbe362fd5db3dd5834d251a3164944",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 52.5532,
+          "longitude": 13.4169,
+          "postalCode": "10439",
+          "address": {
+            "@type": "PostalAddress",
+            "name": "10439 Berlin"
+          }
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "name": "10439 Berlin"
+        },
+        "numberOfRooms": {
+          "@type": "QuantitativeValue",
+          "value": 3
+        },
+        "floorSize": {
+          "@type": "QuantitativeValue",
+          "value": 105
+        }
+      },
+      {
+        "@type": "RealEstateListing",
+        "@id": "https://www.meinestadt.de/expose/1855366",
+        "name": "***Moderne Wohnung, unmöbliert und unbefristet***",
+        "url": "https://www.meinestadt.de/expose/1855366",
+        "description": "Typ: Mieten. Eigenschaften: Keller, Einbauküche, Personenaufzug, Abstellraum. Bezugsfertig: 01.05.2024",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2F50854d7821.jpg&w=400&h=400&sign=68bbe362fd5db3dd5834d251a3164944",
+        "contentLocation": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "postalCode": "10439",
+            "streetAddress": "10439 Berlin"
+          },
+          "latitude": 52.5532,
+          "longitude": 13.4169,
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.5532,
+            "longitude": 13.4169,
+            "postalCode": "10439",
+            "address": {
+              "@type": "PostalAddress",
+              "name": "10439 Berlin"
+            }
+          }
+        },
+        "offers": {
+          "@type": "Offer",
+          "businessFunction": {
+            "@type": "BusinessFunction",
+            "@id": "http://purl.org/goodrelations/v1#LeaseOut"
+          },
+          "priceCurrency": "EUR",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "unitCode": "MON",
+            "description": "EUR Kaltmiete",
+            "price": "2.000"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Apartment",
+        "@id": "https://www.meinestadt.de/expose/1717850",
+        "name": "Möbliertes Juwel im Herzen der Stadt",
+        "url": "https://www.meinestadt.de/expose/1717850",
+        "description": "Typ: Mieten. Eigenschaften: Balkon / Terrasse, Keller, Loggia, Einbauküche, Personenaufzug, provisionsfrei",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2F79df26655f.jpg&w=400&h=400&sign=09f185ce1cb1940bed06b03c7b9c45a7",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 52.5276,
+          "longitude": 13.3637,
+          "postalCode": "10557",
+          "address": {
+            "@type": "PostalAddress",
+            "name": "10557 Berlin"
+          }
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "name": "10557 Berlin"
+        },
+        "numberOfRooms": {
+          "@type": "QuantitativeValue",
+          "value": 2
+        },
+        "floorSize": {
+          "@type": "QuantitativeValue",
+          "value": 42
+        }
+      },
+      {
+        "@type": "RealEstateListing",
+        "@id": "https://www.meinestadt.de/expose/1717850",
+        "name": "Möbliertes Juwel im Herzen der Stadt",
+        "url": "https://www.meinestadt.de/expose/1717850",
+        "description": "Typ: Mieten. Eigenschaften: Balkon / Terrasse, Keller, Loggia, Einbauküche, Personenaufzug, provisionsfrei",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2F79df26655f.jpg&w=400&h=400&sign=09f185ce1cb1940bed06b03c7b9c45a7",
+        "contentLocation": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "postalCode": "10557",
+            "streetAddress": "10557 Berlin"
+          },
+          "latitude": 52.5276,
+          "longitude": 13.3637,
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.5276,
+            "longitude": 13.3637,
+            "postalCode": "10557",
+            "address": {
+              "@type": "PostalAddress",
+              "name": "10557 Berlin"
+            }
+          }
+        },
+        "offers": {
+          "@type": "Offer",
+          "businessFunction": {
+            "@type": "BusinessFunction",
+            "@id": "http://purl.org/goodrelations/v1#LeaseOut"
+          },
+          "priceCurrency": "EUR",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "unitCode": "MON",
+            "description": "EUR Kaltmiete",
+            "price": "1.257"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Apartment",
+        "@id": "https://www.meinestadt.de/expose/875592",
+        "name": "F-Hain: Für 6-12 Monate befristete 2-Zi Wohnung ab sofort zu vermieten / limited - immediately",
+        "url": "https://www.meinestadt.de/expose/875592",
+        "description": "Typ: Mieten. Eigenschaften: Balkon / Terrasse, Keller, Einbauküche. Bezugsfertig: 02.12.2023",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2Faaf2caedcc.jpg&w=400&h=400&sign=1f9752995c8f8d979fc39a324e1a125a",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 52.5084,
+          "longitude": 13.4552,
+          "postalCode": "10245",
+          "address": {
+            "@type": "PostalAddress",
+            "name": "10245 Berlin Friedrichshain"
+          }
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "name": "10245 Berlin Friedrichshain"
+        },
+        "numberOfRooms": {
+          "@type": "QuantitativeValue",
+          "value": 2
+        },
+        "floorSize": {
+          "@type": "QuantitativeValue",
+          "value": 46
+        }
+      },
+      {
+        "@type": "RealEstateListing",
+        "@id": "https://www.meinestadt.de/expose/875592",
+        "name": "F-Hain: Für 6-12 Monate befristete 2-Zi Wohnung ab sofort zu vermieten / limited - immediately",
+        "url": "https://www.meinestadt.de/expose/875592",
+        "description": "Typ: Mieten. Eigenschaften: Balkon / Terrasse, Keller, Einbauküche. Bezugsfertig: 02.12.2023",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2Faaf2caedcc.jpg&w=400&h=400&sign=1f9752995c8f8d979fc39a324e1a125a",
+        "contentLocation": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "postalCode": "10245",
+            "streetAddress": "10245 Berlin Friedrichshain"
+          },
+          "latitude": 52.5084,
+          "longitude": 13.4552,
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.5084,
+            "longitude": 13.4552,
+            "postalCode": "10245",
+            "address": {
+              "@type": "PostalAddress",
+              "name": "10245 Berlin Friedrichshain"
+            }
+          }
+        },
+        "offers": {
+          "@type": "Offer",
+          "businessFunction": {
+            "@type": "BusinessFunction",
+            "@id": "http://purl.org/goodrelations/v1#LeaseOut"
+          },
+          "priceCurrency": "EUR",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "unitCode": "MON",
+            "description": "EUR Kaltmiete",
+            "price": "990"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Apartment",
+        "@id": "https://www.meinestadt.de/expose/875587",
+        "name": "F-Hain: Renovated and furnished 2 room apartment to rent for 6-12 months - immediately!",
+        "url": "https://www.meinestadt.de/expose/875587",
+        "description": "Typ: Mieten. Eigenschaften: Balkon / Terrasse, Keller, Einbauküche. Bezugsfertig: 02.12.2023",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2F307fce6d7d.jpg&w=400&h=400&sign=b3ffa54824127578bf7e837f92365330",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 52.5084,
+          "longitude": 13.4552,
+          "postalCode": "10245",
+          "address": {
+            "@type": "PostalAddress",
+            "name": "10245 Berlin Friedrichshain"
+          }
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "name": "10245 Berlin Friedrichshain"
+        },
+        "numberOfRooms": {
+          "@type": "QuantitativeValue",
+          "value": 2
+        },
+        "floorSize": {
+          "@type": "QuantitativeValue",
+          "value": 46
+        }
+      },
+      {
+        "@type": "RealEstateListing",
+        "@id": "https://www.meinestadt.de/expose/875587",
+        "name": "F-Hain: Renovated and furnished 2 room apartment to rent for 6-12 months - immediately!",
+        "url": "https://www.meinestadt.de/expose/875587",
+        "description": "Typ: Mieten. Eigenschaften: Balkon / Terrasse, Keller, Einbauküche. Bezugsfertig: 02.12.2023",
+        "image": "https://image-resize.meinestadt.de/image-resize/v1/img/fs?id=s3%2F307fce6d7d.jpg&w=400&h=400&sign=b3ffa54824127578bf7e837f92365330",
+        "contentLocation": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "postalCode": "10245",
+            "streetAddress": "10245 Berlin Friedrichshain"
+          },
+          "latitude": 52.5084,
+          "longitude": 13.4552,
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.5084,
+            "longitude": 13.4552,
+            "postalCode": "10245",
+            "address": {
+              "@type": "PostalAddress",
+              "name": "10245 Berlin Friedrichshain"
+            }
+          }
+        },
+        "offers": {
+          "@type": "Offer",
+          "businessFunction": {
+            "@type": "BusinessFunction",
+            "@id": "http://purl.org/goodrelations/v1#LeaseOut"
+          },
+          "priceCurrency": "EUR",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "unitCode": "MON",
+            "description": "EUR Kaltmiete",
+            "price": "990"
+          }
+        }
+      }
+    ]
+  }
+]

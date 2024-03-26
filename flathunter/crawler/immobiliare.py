@@ -36,11 +36,10 @@ class Immobiliare(Crawler):
             image = image_item[0]['src'] if image_item else ""
 
             # the items arrange like so:
-            # 0: price
-            # 1: number of rooms
-            # 2: size of the apartment
-            details_list = row.find(
-                "ul", {"class": "in-reListCard__features"})
+            # 0: number of rooms
+            # 1: size of the apartment
+            details_list = row.find_all(
+                "div", {"class": "in-reListCardFeatureList__item"})
 
             price_li = row.find(
                 "div", {"class": "in-reListCardPrice"})
@@ -56,14 +55,19 @@ class Immobiliare(Crawler):
             if price_re is not None:
                 price = price_re[1]
 
-            rooms_el = details_list.find(attrs={"aria-label":re.compile(r'local[ie]')})
-            rooms = None
-            if rooms_el is not None:
-                rooms = rooms_el.text.strip()
-            size_el = details_list.find(attrs={"aria-label":"superficie"})
-            size = None
-            if size_el is not None:
-                size = size_el.text.strip()
+            detail_texts = [ item.find("span").text.strip() for item in details_list ]
+            room_counts = [ match.group(1) for text in detail_texts
+                if (match := re.match(r"(\d+) local[ie]", text)) is not None ]
+            if len(room_counts) > 0:
+                rooms = room_counts[0]
+            else:
+                rooms = None
+            sizes = [ match.group(1) for text in detail_texts
+                if (match := re.match(r"(\d+) m²", text)) is not None ]
+            if len(sizes) > 0:
+                size = sizes[0]
+            else:
+                size = None
 
             address_match = re.match(r"\w+\s(.*)$", title)
             address = address_match[1] if address_match else ""
