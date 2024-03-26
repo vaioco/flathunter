@@ -55,7 +55,7 @@ With ```Flathunter```, instead of visiting the same pages on the same  sites eve
 ## Prerequisites
 * [Python 3.10+](https://www.python.org/)
 * [pipenv](https://pipenv.pypa.io/en/latest/)
-* [Chromium](https://www.chromium.org/) / [Google Chrome](https://www.google.com/chrome/) (*optional to scan ads on immobilienscout24.de and Kleinanzeigen*)
+* [Chromium](https://www.chromium.org/) / [Google Chrome](https://www.google.com/chrome/) (*optional to scan ads on immobilienscout24.de, Kleinanzeigen and MeineStadt*)
 * [Docker]() (*optional*)
 * [GCloud CLI]() (*optional*)
 

@@ -6,12 +6,12 @@ from typing import Optional
 from bs4 import Tag
 from selenium.webdriver import Chrome
 
-from flathunter.abstract_crawler import Crawler
+from flathunter.webdriver_crawler import WebdriverCrawler
 from flathunter.chrome_wrapper import get_chrome_driver
 from flathunter.exceptions import DriverLoadException
 from flathunter.logging import logger
 
-class Kleinanzeigen(Crawler):
+class Kleinanzeigen(WebdriverCrawler):
     """Implementation of Crawler interface for Ebay Kleinanzeigen"""
 
     URL_PATTERN = re.compile(r'https://www\.kleinanzeigen\.de')
@@ -29,31 +29,6 @@ class Kleinanzeigen(Crawler):
         "November": "11",
         "Dezember": "12"
     }
-
-    def __init__(self, config):
-        super().__init__(config)
-        self.config = config
-        self.driver = None
-
-
-    def get_driver(self) -> Optional[Chrome]:
-        """Lazy method to fetch the driver as required at runtime"""
-        if self.driver is not None:
-            return self.driver
-        driver_arguments = self.config.captcha_driver_arguments()
-        self.driver = get_chrome_driver(driver_arguments)
-        return self.driver
-
-    def get_driver_force(self) -> Chrome:
-        """Fetch the driver, and throw an exception if it is not configured or available"""
-        res = self.get_driver()
-        if res is None:
-            raise DriverLoadException("Unable to load chrome driver when expected")
-        return res
-
-    def get_page(self, search_url, driver=None, page_no=None):
-        """Applies a page number to a formatted search URL and fetches the exposes at that page"""
-        return self.get_soup_from_url(search_url, driver=self.get_driver())
 
     def get_expose_details(self, expose):
         soup = self.get_page(expose['url'], self.get_driver())
