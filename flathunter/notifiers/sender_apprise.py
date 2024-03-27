@@ -15,21 +15,33 @@ class SenderApprise(Processor, Notifier):
     def process_expose(self, expose):
         """Send a message to a user describing the expose"""
         message = self.config.get('message', "").format(
-            title=expose['title'],
-            rooms=expose['rooms'],
-            size=expose['size'],
-            price=expose['price'],
-            url=expose['url'],
-            address=expose['address'],
-            durations="" if 'durations' not in expose else expose['durations']).strip()
-        self.__send_msg(message)
+            crawler=expose.get('crawler', 'N/A'),
+            title=expose.get('title', 'N/A'),
+            rooms=expose.get('rooms', 'N/A'),
+            size=expose.get('size', 'N/A'),
+            price=expose.get('price', 'N/A'),
+            url=expose.get('url', 'N/A'),
+            address=expose.get('address', 'N/A'),
+            durations=expose.get('durations', 'N/A')
+        ).strip()
+        title = self.config.get('title', "").format(
+            crawler=expose.get('crawler', 'N/A'),
+            title=expose.get('title', 'N/A'),
+            rooms=expose.get('rooms', 'N/A'),
+            size=expose.get('size', 'N/A'),
+            price=expose.get('price', 'N/A'),
+            url=expose.get('url', 'N/A'),
+            address=expose.get('address', 'N/A'),
+            durations=expose.get('durations', 'N/A')
+        ).strip()
+        self.__send_msg(message, title)
         return expose
 
     def notify(self, message: str):
         """ Send the given message to users """
-        self.__send_msg(message=message)
+        self.__send_msg(message=message, title=None)
 
-    def __send_msg(self, message):
+    def __send_msg(self, message, title):
         """Send messages to each of the Apprise urls"""
         apobj = apprise.Apprise()
         if self.apprise_urls is None:
@@ -39,6 +51,6 @@ class SenderApprise(Processor, Notifier):
 
         apobj.notify(
             body=message,
-            title='',
+            title=title,
             body_format=apprise.NotifyFormat.TEXT,
         )
