@@ -81,7 +81,7 @@ class MeineStadt(WebdriverCrawler):
             'url': apartment['url'],
             'title': apartment['name'],
             'id': int(apartment['url'].split('/')[-1]),
-            'image': apartment['image'],
+            'image': apartment.get('image', None),
             'crawler': MeineStadt.__name__,
             'address': MeineStadt.get_address(apartment),
             'price': MeineStadt.get_price(blob['@graph'])
