@@ -22,9 +22,7 @@ class Immobiliare(Crawler):
         results = soup.find(
             'ul', {"class": "in-realEstateResults"})
 
-        items = results.find_all(lambda l: l.has_attr(
-            'class') and "in-realEstateResults__item" in l['class']
-            and "in-realEstateResults__carouselAgency" not in l["class"])
+        items = results.select("div.in-reListCard")
 
         for row in items:
             title_row = row.find('a', {"class": "in-reListCard__title"})
