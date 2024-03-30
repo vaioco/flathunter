@@ -94,9 +94,10 @@ class GoogleCloudIdMaintainer:
         docs = self.database.collection('executions').order_by(
             'timestamp', direction=BaseQuery.DESCENDING).limit(1).stream()
         for doc in docs:
-            if doc.to_dict() is None:
+            doc_as_dict = doc.to_dict()
+            if doc_as_dict is None:
                 return None
-            return doc.to_dict()['timestamp']
+            return doc_as_dict['timestamp']
 
     def update_last_run_time(self):
         """Updates the time of the last run in the database"""
