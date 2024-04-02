@@ -3,12 +3,13 @@ import apprise
 
 from flathunter.abstract_notifier import Notifier
 from flathunter.abstract_processor import Processor
+from flathunter.config import YamlConfig
 
 
 class SenderApprise(Processor, Notifier):
     """Expose processor that sends Apprise messages"""
 
-    def __init__(self, config):
+    def __init__(self, config: YamlConfig):
         self.config = config
         self.apprise_urls = self.config.get('apprise', {})
         self.__notify_with_images: bool = self.config.apprise_notify_with_images()
