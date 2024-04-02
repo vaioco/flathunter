@@ -179,6 +179,7 @@ mattermost:
 #   - gotifys://...
 #   - mailto://..
 #   - signal://localhost:9922/{FromPhoneNo}
+# apprise_notify_with_images: true
 apprise:
 
 # Sending messages to a Slack channel requires a webhook url. You can find
