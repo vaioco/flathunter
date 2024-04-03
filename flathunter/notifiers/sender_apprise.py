@@ -36,7 +36,7 @@ class SenderApprise(Processor, Notifier):
             address=expose.get('address', 'N/A'),
             durations=expose.get('durations', 'N/A')
         ).strip()
-        images = expose.get('images', expose.get('image'))\
+        images = expose.get('images', [expose.get('image')])[:6]\
             if self.__notify_with_images else None
         self.__send_msg(message, title, images)
         return expose
