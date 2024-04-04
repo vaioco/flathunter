@@ -66,6 +66,8 @@ class Env:
     FLATHUNTER_MATTERMOST_WEBHOOK_URL = _read_env(
         "FLATHUNTER_MATTERMOST_WEBHOOK_URL")
     FLATHUNTER_SLACK_WEBHOOK_URL = _read_env("FLATHUNTER_SLACK_WEBHOOK_URL")
+    FLATHUNTER_APPRISE_NOTIFY_WITH_IMAGES = \
+        _read_env("FLATHUNTER_APPRISE_NOTIFY_WITH_IMAGES")
 
     # Filters
     FLATHUNTER_FILTER_EXCLUDED_TITLES = _read_env(
@@ -277,6 +279,12 @@ Preis: {price}
     def apprise_urls(self) -> List[str]:
         """Notification URLs for Apprise"""
         return self._read_yaml_path('apprise', [])
+
+    def apprise_notify_with_images(self) -> bool:
+        """True if images should be sent along with notifications"""
+        flag = str(self._read_yaml_path(
+            "apprise_notify_with_images", 'false'))
+        return flag.lower() == 'true'
 
     def _get_imagetyperz_token(self):
         """API Token for Imagetyperz"""
@@ -513,6 +521,11 @@ class Config(CaptchaEnvironmentConfig):  # pylint: disable=too-many-public-metho
         if Env.FLATHUNTER_SLACK_WEBHOOK_URL is not None:
             return Env.FLATHUNTER_SLACK_WEBHOOK_URL
         return super().slack_webhook_url()
+
+    def apprise_notify_with_images(self) -> bool:
+        if Env.FLATHUNTER_APPRISE_NOTIFY_WITH_IMAGES is not None:
+            return str(Env.FLATHUNTER_APPRISE_NOTIFY_WITH_IMAGES) == 'true'
+        return super().apprise_notify_with_images()
 
     def excluded_titles(self):
         if Env.FLATHUNTER_FILTER_EXCLUDED_TITLES is not None:

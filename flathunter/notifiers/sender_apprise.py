@@ -3,14 +3,16 @@ import apprise
 
 from flathunter.abstract_notifier import Notifier
 from flathunter.abstract_processor import Processor
+from flathunter.config import YamlConfig
 
 
 class SenderApprise(Processor, Notifier):
     """Expose processor that sends Apprise messages"""
 
-    def __init__(self, config):
+    def __init__(self, config: YamlConfig):
         self.config = config
         self.apprise_urls = self.config.get('apprise', {})
+        self.__notify_with_images: bool = self.config.apprise_notify_with_images()
 
     def process_expose(self, expose):
         """Send a message to a user describing the expose"""
@@ -34,14 +36,16 @@ class SenderApprise(Processor, Notifier):
             address=expose.get('address', 'N/A'),
             durations=expose.get('durations', 'N/A')
         ).strip()
-        self.__send_msg(message, title)
+        images = expose.get('images', [expose.get('image')])[:6]\
+            if self.__notify_with_images else None
+        self.__send_msg(message, title, images)
         return expose
 
     def notify(self, message: str):
         """ Send the given message to users """
-        self.__send_msg(message=message, title=None)
+        self.__send_msg(message=message, title=None, images=None)
 
-    def __send_msg(self, message, title):
+    def __send_msg(self, message, title, images):
         """Send messages to each of the Apprise urls"""
         apobj = apprise.Apprise()
         if self.apprise_urls is None:
@@ -52,5 +56,6 @@ class SenderApprise(Processor, Notifier):
         apobj.notify(
             body=message,
             title=title,
+            attach=images,
             body_format=apprise.NotifyFormat.TEXT,
         )
