@@ -174,12 +174,15 @@ mattermost:
 # You can find a description how to set up an Apprise url with the official
 # documentation: https://github.com/caronc/apprise
 # Signal notifications are documented here https://github.com/caronc/apprise/wiki/Notify_signal
+# When using the apprise-api (https://github.com/caronc/apprise-api) service,
+# set the limit to 6 images or increase the attachment limit in your apprise-api instance.
 #
 # apprise:
 #   - gotifys://...
 #   - mailto://..
 #   - signal://localhost:9922/{FromPhoneNo}
 # apprise_notify_with_images: true
+# apprise_image_limit: 6
 apprise:
 
 # Sending messages to a Slack channel requires a webhook url. You can find
