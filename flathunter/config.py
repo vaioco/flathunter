@@ -66,8 +66,10 @@ class Env:
     FLATHUNTER_MATTERMOST_WEBHOOK_URL = _read_env(
         "FLATHUNTER_MATTERMOST_WEBHOOK_URL")
     FLATHUNTER_SLACK_WEBHOOK_URL = _read_env("FLATHUNTER_SLACK_WEBHOOK_URL")
-    FLATHUNTER_APPRISE_NOTIFY_WITH_IMAGES = \
-        _read_env("FLATHUNTER_APPRISE_NOTIFY_WITH_IMAGES")
+    FLATHUNTER_APPRISE_NOTIFY_WITH_IMAGES = _read_env(
+        "FLATHUNTER_APPRISE_NOTIFY_WITH_IMAGES")
+    FLATHUNTER_APPRISE_IMAGE_LIMIT = _read_env(
+        "FLATHUNTER_APPRISE_IMAGE_LIMIT")
 
     # Filters
     FLATHUNTER_FILTER_EXCLUDED_TITLES = _read_env(
@@ -285,6 +287,10 @@ Preis: {price}
         flag = str(self._read_yaml_path(
             "apprise_notify_with_images", 'false'))
         return flag.lower() == 'true'
+
+    def apprise_image_limit(self) -> Optional[int]:
+        """How many images should be sent along with Apprise notifications"""
+        return self._read_yaml_path('apprise_image_limit', None)
 
     def _get_imagetyperz_token(self):
         """API Token for Imagetyperz"""
@@ -526,6 +532,11 @@ class Config(CaptchaEnvironmentConfig):  # pylint: disable=too-many-public-metho
         if Env.FLATHUNTER_APPRISE_NOTIFY_WITH_IMAGES is not None:
             return str(Env.FLATHUNTER_APPRISE_NOTIFY_WITH_IMAGES) == 'true'
         return super().apprise_notify_with_images()
+
+    def apprise_image_limit(self) -> Optional[int]:
+        if Env.FLATHUNTER_APPRISE_IMAGE_LIMIT is not None:
+            return int(Env.FLATHUNTER_APPRISE_IMAGE_LIMIT)
+        return super().apprise_image_limit()
 
     def excluded_titles(self):
         if Env.FLATHUNTER_FILTER_EXCLUDED_TITLES is not None:

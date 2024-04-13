@@ -13,6 +13,7 @@ class SenderApprise(Processor, Notifier):
         self.config = config
         self.apprise_urls = self.config.get('apprise', {})
         self.__notify_with_images: bool = self.config.apprise_notify_with_images()
+        self.__image_limit = self.config.apprise_image_limit()
 
     def process_expose(self, expose):
         """Send a message to a user describing the expose"""
@@ -36,16 +37,21 @@ class SenderApprise(Processor, Notifier):
             address=expose.get('address', 'N/A'),
             durations=expose.get('durations', 'N/A')
         ).strip()
-        images = expose.get('images', [expose.get('image')])[:6]\
-            if self.__notify_with_images else None
-        self.__send_msg(message, title, images)
+        images = expose.get("images", [])[: self.__image_limit]
+        image = expose.get("image")
+        attach = (
+            (images if images else image)
+            if self.__notify_with_images
+            else None
+        )
+        self.__send_msg(message, title, attach)
         return expose
 
     def notify(self, message: str):
-        """ Send the given message to users """
-        self.__send_msg(message=message, title=None, images=None)
+        """Send the given message to users"""
+        self.__send_msg(message=message, title=None, attach=None)
 
-    def __send_msg(self, message, title, images):
+    def __send_msg(self, message, title, attach):
         """Send messages to each of the Apprise urls"""
         apobj = apprise.Apprise()
         if self.apprise_urls is None:
@@ -56,6 +62,6 @@ class SenderApprise(Processor, Notifier):
         apobj.notify(
             body=message,
             title=title,
-            attach=images,
+            attach=attach,
             body_format=apprise.NotifyFormat.TEXT,
         )
