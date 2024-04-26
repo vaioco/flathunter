@@ -15,7 +15,7 @@ Use this bot to help with your flatsearch - it's a much better use of your time 
 
 ## If you are not a Python developer / power-user
 
-Setting up this project on your local machine can be a bit complicated if you have no experience with Python. This `README` is detailed, and there is a configuration wizard, but it's not super user-friendly. If you are searching for properties in Berlin, you can use the hosted version at https://flathunter.codders.io . You can login there with your Telegram ID and setup a basic search without downloading the project.
+Setting up this project on your local machine can be a bit complicated if you have no experience with Python. This `README` is detailed, and there is a configuration wizard, but it's not super user-friendly. If you are searching for properties in Berlin, you can use the hosted version at https://flathunter.codders.de . You can login there with your Telegram ID and setup a basic search without downloading the project.
 
 ## Description
 
