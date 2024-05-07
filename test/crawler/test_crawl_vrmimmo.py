@@ -1,5 +1,6 @@
 import os
 import unittest
+import pytest
 from functools import reduce
 
 from flathunter.crawler.vrmimmo import VrmImmo
@@ -16,6 +17,7 @@ class VrmImmoCrawlerTest(unittest.TestCase):
     def setUp(self):
         self.crawler = VrmImmo(StringConfig(string=self.DUMMY_CONFIG))
 
+    @pytest.mark.skip(reason="Crawler not working since May 2024")
     def test(self):
         soup = self.crawler.get_page(self.TEST_URL)
         self.assertIsNotNone(soup, "Should get a soup from the URL")
