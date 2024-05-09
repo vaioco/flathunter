@@ -107,7 +107,7 @@ message: |
 # (Multiline) string to format the title for the message received from Apprise.
 #
 # For available placeholders see above
-title: {crawler}: {title}
+title: "{crawler}: {title}"
 
 # Calculating durations requires access to the Google Maps API.
 # Below you can configure the URL to access the API, with placeholders.
