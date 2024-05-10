@@ -281,6 +281,7 @@ To make deployment with docker easier, most of the important configuration optio
  - FLATHUNTER_WEBSITE_DOMAIN - the public domain of the flathunter website deployment
  - FLATHUNTER_2CAPTCHA_KEY - the API key for 2captcha
  - FLATHUNTER_IMAGETYPERZ_TOKEN - the API token for ImageTyperz
+ - FLATHUNTER_IS24_COOKIE - set to the value of the reese84 immoscout cookie to help with bot detection
  - FLATHUNTER_HEADLESS_BROWSER - set to any value to configure Google Chrome to be launched in headless mode (necessary for Docker installations)
  - FLATHUNTER_FILTER_EXCLUDED_TITLES - a semicolon-separated list of words to filter out from matches
  - FLATHUNTER_FILTER_MIN_PRICE - the minimum price (integer euros)
