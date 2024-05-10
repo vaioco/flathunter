@@ -1,6 +1,4 @@
 """Expose crawler for Ebay Kleinanzeigen"""
-import re
-import datetime
 from typing import Optional
 
 from selenium.webdriver import Chrome

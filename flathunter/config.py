@@ -1,6 +1,6 @@
 """Wrap configuration options as an object"""
 import os
-from typing import Optional, Dict, Any, List
+from typing import Optional, Dict, Any, List, Callable
 
 import json
 import yaml
@@ -25,18 +25,19 @@ from flathunter.exceptions import ConfigException
 load_dotenv()
 
 
-def _read_env(key: str, fallback: Optional[str] = None) -> Optional[str]:
+def _read_env(key: str, fallback: Optional[str] = None) -> Callable[[], Optional[str]]:
     """ read the given key from environment"""
-    return os.environ.get(key, fallback)
+    return lambda: os.environ.get(key, fallback)
 
 
 class Env:
-    """Registers and freezes environment variables"""
+    """Reads data from the environment"""
 
     # Captcha setup
     FLATHUNTER_2CAPTCHA_KEY = _read_env("FLATHUNTER_2CAPTCHA_KEY")
     FLATHUNTER_IMAGETYPERZ_TOKEN = _read_env("FLATHUNTER_IMAGETYPERZ_TOKEN")
     FLATHUNTER_HEADLESS_BROWSER = _read_env("FLATHUNTER_HEADLESS_BROWSER")
+    FLATHUNTER_IS24_COOKIE = _read_env("FLATHUNTER_IS24_COOKIE")
 
     # Generic Config
     FLATHUNTER_TARGET_URLS = _read_env("FLATHUNTER_TARGET_URLS")
@@ -368,6 +369,10 @@ Preis: {price}
         """Return the configured maximum price per square meter"""
         return self._get_filter_config("max_price_per_square")
 
+    def immoscout_cookie(self):
+        """Return the precalculated immoscout cookie"""
+        return self._read_yaml_path('immoscout_cookie', None)
+
     def __repr__(self):
         return json.dumps({
             "captcha_enabled": self.captcha_enabled(),
@@ -389,19 +394,15 @@ class CaptchaEnvironmentConfig(YamlConfig):
     """Mixin to add environment-variable captcha support to config object"""
 
     def _get_imagetyperz_token(self):
-        if Env.FLATHUNTER_IMAGETYPERZ_TOKEN is not None:
-            return Env.FLATHUNTER_IMAGETYPERZ_TOKEN
-        return super()._get_imagetyperz_token()  # pylint: disable=no-member
+        return Env.FLATHUNTER_IMAGETYPERZ_TOKEN() or super()._get_imagetyperz_token()  # pylint: disable=no-member
 
-    def get_twocaptcha_key(self):
+    def get_twocaptcha_key(self) -> str:
         """Return the currently configured 2captcha API key"""
-        if Env.FLATHUNTER_2CAPTCHA_KEY is not None:
-            return Env.FLATHUNTER_2CAPTCHA_KEY
-        return super().get_twocaptcha_key()  # pylint: disable=no-member
+        return Env.FLATHUNTER_2CAPTCHA_KEY() or super().get_twocaptcha_key()  # pylint: disable=no-member
 
     def captcha_driver_arguments(self):
         """The list of driver arguments for Selenium / Webdriver"""
-        if Env.FLATHUNTER_HEADLESS_BROWSER is not None:
+        if Env.FLATHUNTER_HEADLESS_BROWSER() is not None:
             return [
                 "--no-sandbox",
                 "--headless",
@@ -419,7 +420,7 @@ class Config(CaptchaEnvironmentConfig):  # pylint: disable=too-many-public-metho
     """
 
     def __init__(self, filename=None):
-        if filename is None and Env.FLATHUNTER_TARGET_URLS is None:
+        if filename is None and Env.FLATHUNTER_TARGET_URLS() is None:
             raise ConfigException(
                 "Config file loaction must be specified, or FLATHUNTER_TARGET_URLS must be set")
         if filename is not None:
@@ -434,146 +435,152 @@ class Config(CaptchaEnvironmentConfig):  # pylint: disable=too-many-public-metho
 
     def database_location(self):
         """Return the location of the database folder"""
-        if Env.FLATHUNTER_DATABASE_LOCATION is not None:
-            return Env.FLATHUNTER_DATABASE_LOCATION
-        return super().database_location()
+        return Env.FLATHUNTER_DATABASE_LOCATION() or super().database_location()
 
     def target_urls(self):
-        if Env.FLATHUNTER_TARGET_URLS is not None:
-            return Env.FLATHUNTER_TARGET_URLS.split(';')
+        env_urls = Env.FLATHUNTER_TARGET_URLS()
+        if env_urls is not None:
+            return env_urls.split(';')
         return super().target_urls()
 
     def verbose_logging(self):
-        if Env.FLATHUNTER_VERBOSE_LOG is not None:
+        if Env.FLATHUNTER_VERBOSE_LOG() is not None:
             return True
         return super().verbose_logging()
 
     def loop_is_active(self):
-        if Env.FLATHUNTER_LOOP_PERIOD_SECONDS is not None:
+        if Env.FLATHUNTER_LOOP_PERIOD_SECONDS() is not None:
             return True
         return super().loop_is_active()
 
     def loop_period_seconds(self):
-        if Env.FLATHUNTER_LOOP_PERIOD_SECONDS is not None:
-            return int(Env.FLATHUNTER_LOOP_PERIOD_SECONDS)
+        env_seconds = Env.FLATHUNTER_LOOP_PERIOD_SECONDS()
+        if env_seconds is not None:
+            return int(env_seconds)
         return super().loop_period_seconds()
 
     def loop_pause_from(self):
-        if Env.FLATHUNTER_LOOP_PAUSE_FROM is not None:
-            return str(Env.FLATHUNTER_LOOP_PAUSE_FROM)
+        env_pause = Env.FLATHUNTER_LOOP_PAUSE_FROM()
+        if env_pause is not None:
+            return str(env_pause)
         return super().loop_pause_from()
 
     def loop_pause_till(self):
-        if Env.FLATHUNTER_LOOP_PAUSE_TILL is not None:
-            return str(Env.FLATHUNTER_LOOP_PAUSE_TILL)
+        env_until = Env.FLATHUNTER_LOOP_PAUSE_TILL()
+        if env_until is not None:
+            return str(env_until)
         return super().loop_pause_till()
 
     def has_website_config(self):
-        if Env.FLATHUNTER_WEBSITE_SESSION_KEY is not None:
+        if Env.FLATHUNTER_WEBSITE_SESSION_KEY() is not None:
             return True
         return super().has_website_config()
 
     def website_session_key(self):
-        if Env.FLATHUNTER_WEBSITE_SESSION_KEY is not None:
-            return Env.FLATHUNTER_WEBSITE_SESSION_KEY
-        return super().website_session_key()
+        return Env.FLATHUNTER_WEBSITE_SESSION_KEY() or super().website_session_key()
 
     def website_domain(self):
-        if Env.FLATHUNTER_WEBSITE_DOMAIN is not None:
-            return Env.FLATHUNTER_WEBSITE_DOMAIN
-        return super().website_domain()
+        return Env.FLATHUNTER_WEBSITE_DOMAIN() or super().website_domain()
 
     def website_bot_name(self):
-        if Env.FLATHUNTER_WEBSITE_BOT_NAME is not None:
-            return Env.FLATHUNTER_WEBSITE_BOT_NAME
-        return super().website_bot_name()
+        return Env.FLATHUNTER_WEBSITE_BOT_NAME() or super().website_bot_name()
 
     def google_cloud_project_id(self):
-        if Env.FLATHUNTER_GOOGLE_CLOUD_PROJECT_ID is not None:
-            return Env.FLATHUNTER_GOOGLE_CLOUD_PROJECT_ID
-        return super().google_cloud_project_id()
+        return Env.FLATHUNTER_GOOGLE_CLOUD_PROJECT_ID() or super().google_cloud_project_id()
 
     def message_format(self):
-        if Env.FLATHUNTER_MESSAGE_FORMAT is not None:
-            return '\n'.join(Env.FLATHUNTER_MESSAGE_FORMAT.split('#CR#'))
+        env_message_format = Env.FLATHUNTER_MESSAGE_FORMAT()
+        if env_message_format is not None:
+            return '\n'.join(env_message_format.split('#CR#'))
         return super().message_format()
 
     def notifiers(self):
-        if Env.FLATHUNTER_NOTIFIERS is not None:
-            return Env.FLATHUNTER_NOTIFIERS.split(",")
+        env_notifiers = Env.FLATHUNTER_NOTIFIERS()
+        if env_notifiers is not None:
+            return env_notifiers.split(",")
         return super().notifiers()
 
     def telegram_bot_token(self) -> Optional[str]:
-        if Env.FLATHUNTER_TELEGRAM_BOT_TOKEN is not None:
-            return Env.FLATHUNTER_TELEGRAM_BOT_TOKEN
-        return super().telegram_bot_token()
+        return Env.FLATHUNTER_TELEGRAM_BOT_TOKEN() or super().telegram_bot_token()
 
     def telegram_notify_with_images(self) -> bool:
-        if Env.FLATHUNTER_TELEGRAM_BOT_NOTIFY_WITH_IMAGES is not None:
-            return str(Env.FLATHUNTER_TELEGRAM_BOT_NOTIFY_WITH_IMAGES) == 'true'
+        env_bot_images = Env.FLATHUNTER_TELEGRAM_BOT_NOTIFY_WITH_IMAGES()
+        if env_bot_images is not None:
+            return str(env_bot_images) == 'true'
         return super().telegram_notify_with_images()
 
     def telegram_receiver_ids(self):
-        if Env.FLATHUNTER_TELEGRAM_RECEIVER_IDS is not None:
-            return [int(x) for x in Env.FLATHUNTER_TELEGRAM_RECEIVER_IDS.split(",")]
+        env_receiver_ids = Env.FLATHUNTER_TELEGRAM_RECEIVER_IDS()
+        if env_receiver_ids is not None:
+            return [int(x) for x in env_receiver_ids.split(",")]
         return super().telegram_receiver_ids()
 
     def mattermost_webhook_url(self):
-        if Env.FLATHUNTER_MATTERMOST_WEBHOOK_URL is not None:
-            return Env.FLATHUNTER_MATTERMOST_WEBHOOK_URL
-        return super().mattermost_webhook_url()
+        return Env.FLATHUNTER_MATTERMOST_WEBHOOK_URL() or super().mattermost_webhook_url()
 
     def slack_webhook_url(self):
-        if Env.FLATHUNTER_SLACK_WEBHOOK_URL is not None:
-            return Env.FLATHUNTER_SLACK_WEBHOOK_URL
+        if Env.FLATHUNTER_SLACK_WEBHOOK_URL() is not None:
+            return Env.FLATHUNTER_SLACK_WEBHOOK_URL()
         return super().slack_webhook_url()
 
     def apprise_notify_with_images(self) -> bool:
-        if Env.FLATHUNTER_APPRISE_NOTIFY_WITH_IMAGES is not None:
-            return str(Env.FLATHUNTER_APPRISE_NOTIFY_WITH_IMAGES) == 'true'
+        if Env.FLATHUNTER_APPRISE_NOTIFY_WITH_IMAGES() is not None:
+            return str(Env.FLATHUNTER_APPRISE_NOTIFY_WITH_IMAGES()) == 'true'
         return super().apprise_notify_with_images()
 
     def apprise_image_limit(self) -> Optional[int]:
-        if Env.FLATHUNTER_APPRISE_IMAGE_LIMIT is not None:
-            return int(Env.FLATHUNTER_APPRISE_IMAGE_LIMIT)
+        env_limit = Env.FLATHUNTER_APPRISE_IMAGE_LIMIT()
+        if env_limit is not None:
+            return int(env_limit)
         return super().apprise_image_limit()
 
     def excluded_titles(self):
-        if Env.FLATHUNTER_FILTER_EXCLUDED_TITLES is not None:
-            return Env.FLATHUNTER_FILTER_EXCLUDED_TITLES.split(";")
+        env_filter = Env.FLATHUNTER_FILTER_EXCLUDED_TITLES()
+        if env_filter is not None:
+            return env_filter.split(";")
         return super().excluded_titles()
 
     def min_price(self):
-        if Env.FLATHUNTER_FILTER_MIN_PRICE is not None:
-            return int(Env.FLATHUNTER_FILTER_MIN_PRICE)
+        env_price = Env.FLATHUNTER_FILTER_MIN_PRICE()
+        if env_price is not None:
+            return int(env_price)
         return super().min_price()
 
     def max_price(self):
-        if Env.FLATHUNTER_FILTER_MAX_PRICE is not None:
-            return int(Env.FLATHUNTER_FILTER_MAX_PRICE)
+        env_price = Env.FLATHUNTER_FILTER_MAX_PRICE()
+        if env_price is not None:
+            return int(env_price)
         return super().max_price()
 
     def min_size(self):
-        if Env.FLATHUNTER_FILTER_MIN_SIZE is not None:
-            return int(Env.FLATHUNTER_FILTER_MIN_SIZE)
+        env_size = Env.FLATHUNTER_FILTER_MIN_SIZE()
+        if env_size is not None:
+            return int(env_size)
         return super().min_size()
 
     def max_size(self):
-        if Env.FLATHUNTER_FILTER_MAX_SIZE is not None:
-            return int(Env.FLATHUNTER_FILTER_MAX_SIZE)
+        env_size = Env.FLATHUNTER_FILTER_MAX_SIZE()
+        if env_size is not None:
+            return int(env_size)
         return super().max_size()
 
     def min_rooms(self):
-        if Env.FLATHUNTER_FILTER_MIN_ROOMS is not None:
-            return int(Env.FLATHUNTER_FILTER_MIN_ROOMS)
+        env_rooms = Env.FLATHUNTER_FILTER_MIN_ROOMS()
+        if env_rooms is not None:
+            return int(env_rooms)
         return super().min_rooms()
 
     def max_rooms(self):
-        if Env.FLATHUNTER_FILTER_MAX_ROOMS is not None:
-            return int(Env.FLATHUNTER_FILTER_MAX_ROOMS)
+        env_rooms = Env.FLATHUNTER_FILTER_MAX_ROOMS()
+        if env_rooms is not None:
+            return int(env_rooms)
         return super().max_rooms()
 
     def max_price_per_square(self):
-        if Env.FLATHUNTER_FILTER_MAX_PRICE_PER_SQUARE is not None:
-            return float(Env.FLATHUNTER_FILTER_MAX_PRICE_PER_SQUARE)
+        env_price = Env.FLATHUNTER_FILTER_MAX_PRICE_PER_SQUARE()
+        if env_price is not None:
+            return float(env_price)
         return super().max_price_per_square()
+
+    def immoscout_cookie(self):
+        return Env.FLATHUNTER_IS24_COOKIE() or super().immoscout_cookie()
