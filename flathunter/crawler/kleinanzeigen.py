@@ -1,14 +1,10 @@
 """Expose crawler for Ebay Kleinanzeigen"""
 import re
 import datetime
-from typing import Optional
 
 from bs4 import Tag
-from selenium.webdriver import Chrome
 
 from flathunter.webdriver_crawler import WebdriverCrawler
-from flathunter.chrome_wrapper import get_chrome_driver
-from flathunter.exceptions import DriverLoadException
 from flathunter.logging import logger
 
 class Kleinanzeigen(WebdriverCrawler):
