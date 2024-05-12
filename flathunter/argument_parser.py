@@ -13,7 +13,7 @@ def parse():
                      " and sends results to Telegram User"),
         epilog="Designed by Nody"
     )
-    if Env.FLATHUNTER_TARGET_URLS is not None:
+    if Env.FLATHUNTER_TARGET_URLS() is not None:
         default_config_path = None
     else:
         root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
