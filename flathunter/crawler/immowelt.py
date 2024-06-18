@@ -71,7 +71,7 @@ class Immowelt(Crawler):
 
             try:
                 rooms = expose_ids[idx].find(
-                    "div", attrs={"data-test": "rooms"}).text
+                    "div", attrs={"data-test": "rooms"}).text.replace(" Zi.", "")
             except IndexError:
                 rooms = ""
 
