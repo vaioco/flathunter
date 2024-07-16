@@ -1,4 +1,4 @@
-"""Expose crawler for Ebay Kleinanzeigen"""
+"""Expose crawler for Kleinanzeigen"""
 from typing import Optional
 
 from selenium.webdriver import Chrome

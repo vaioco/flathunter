@@ -1,4 +1,4 @@
-"""Expose crawler for Ebay Kleinanzeigen"""
+"""Expose crawler for Kleinanzeigen"""
 import re
 import datetime
 
@@ -8,7 +8,7 @@ from flathunter.webdriver_crawler import WebdriverCrawler
 from flathunter.logging import logger
 
 class Kleinanzeigen(WebdriverCrawler):
-    """Implementation of Crawler interface for Ebay Kleinanzeigen"""
+    """Implementation of Crawler interface for Kleinanzeigen"""
 
     URL_PATTERN = re.compile(r'https://www\.kleinanzeigen\.de')
     MONTHS = {
