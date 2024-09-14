@@ -177,8 +177,11 @@ Preis: {price}
         builder.read_config(self)
         return builder.build()
     
-    def idealista_auth(self):
-        return self._get_idealista_api_auth()
+    def idealista_key(self):
+        return self._get_idealista_api_key()
+
+    def idealista_secret(self):
+        return self._get_idealista_api_secret()
 
     def captcha_enabled(self):
         """Check if captcha is configured"""
@@ -280,8 +283,11 @@ Preis: {price}
         """Notification URLs for Apprise"""
         return self._read_yaml_path('apprise', [])
 
-    def _get_idealista_api_auth(self):
-        return self._read_yaml_path("idealista.apiauth", "")        
+    def _get_idealista_api_key(self):
+        return self._read_yaml_path("idealista.apikey", "")        
+
+    def _get_idealista_api_secret(self):
+        return self._read_yaml_path("idealista.apisecret", "")     
 
     def _get_imagetyperz_token(self):
         """API Token for Imagetyperz"""
@@ -373,7 +379,8 @@ Preis: {price}
             "telegram_bot_token": elide(self.telegram_bot_token()),
             "target_urls": self.target_urls(),
             "use_proxy": self.use_proxy(),
-            "idealista_auth": self._get_idealista_api_auth(),
+            "idealista_secret": self._get_idealista_api_secret(),
+            "idealista_key": self._get_idealista_api_key(),
         })
 
 
