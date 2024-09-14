@@ -4,6 +4,9 @@ import requests
 import json
 from flathunter.logging import logger
 from flathunter.abstract_crawler import Crawler
+import urllib
+import requests as rq
+import base64
 
 class CrawIdealistaAPI(Crawler):
 
@@ -13,18 +16,37 @@ class CrawIdealistaAPI(Crawler):
     def __init__(self, config):
         super().__init__(config)
         self.config = config
+        data = self.get_oauth_token()
+        print(data)
+        self.ideal_token = data['access_token']
+
+    def get_oauth_token(self):
+        url = "https://api.idealista.com/oauth/token"
+        apikey= urllib.parse.quote_plus(self.config.idealista_key())
+        secret= urllib.parse.quote_plus(self.config.idealista_secret())
+        final = apikey + ':' + secret
+        # print(final)
+        auth = base64.b64encode(final.encode())
+        # print(auth)
+        params = urllib.parse.urlencode({'grant_type':'client_credentials'})
+        headers = {'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8','Authorization' : 'Basic ' + auth.decode()}
+        # print(headers)
+        content = rq.post(url,headers = headers, params=params)
+        # print(content.text)
+        # bearer_token = json.loads(content.text)['access_token']
+        return json.loads(content.text)
     
     def get_page(self, search_url, driver=None, page_no=None):
         post_data = {
-            'center': (None,'41.3874,2.1686'),
+            'center': (None,'41.3884,2.1686'),
             'propertyType':(None,'homes'),
             'distance':(None,'15000'),
             'locale':(None,'en'),
-            'operation':(None,'rent'),
-            'maxItems': (None,'50'),
-            'minSize': (None, '40'),
+            'operation':(None,'sale'),
+            'maxItems': (None,'1000'),
+            'minSize': (None, '100'),
             'flat': (None, True),
-            'maxPrice': (None, '2000'),
+            'maxPrice': (None, '200000'),
             'order' : (None, 'publicationDate'),
             'sort' : (None, 'desc'),
             'furnished' : (None, 'furnished'),
@@ -32,11 +54,11 @@ class CrawIdealistaAPI(Crawler):
             'elevator' : (None, True),
         }
 
-        ## TODO this is a tmp token
         MYHEADERS = {
-        'Authorization': 'Bearer' + self.config.idealista_auth() ,        
+            'Authorization' : 'Bearer ' + self.ideal_token,       
         }
-
+        logger.info('scannig url %s\n', search_url)
+        logger.debug('post data %s\n', post_data)
         resp = requests.post(search_url, files=post_data, headers=MYHEADERS, timeout=30)
         if resp.status_code not in (200, 405):
             user_agent = 'Unknown'
@@ -44,26 +66,27 @@ class CrawIdealistaAPI(Crawler):
                 user_agent = self.HEADERS['User-Agent']
             logger.error("Got response (%i): %s\n%s",
                          resp.status_code, resp.content, user_agent)
-        logger.debug('got resp status %d', resp.status_code)
+        logger.info('got resp status %d \n', resp.status_code)
         return resp.json()   
 
     def extract_data(self, jdata):
         entries = []
         for elem in jdata['elementList']:
-            logger.debug(elem)
+            logger.info(elem)
+            
             details = {
                 'id': int(elem['propertyCode']),
-                'image': elem['thumbnail'],
+                'image': elem.get('thumbnail'),
                 'url': elem['url'],
-                'title': elem['description'][:500],
+                'title': elem.get('description'),
                 'price': str(elem['price']),
                 'size': str(elem['size']),
                 'rooms': str(elem['rooms']),
                 'address': elem['address'],
                 'lift': str(elem['hasLift']),
                 'pricebyarea': str(elem['priceByArea']),
-                'neighborhood': str(elem['neighborhood']),
-                'district': str(elem['district']),
+                'neighborhood': str(elem.get('neighborhood')),
+                'district': str(elem.get('district')), # not available for op=sale
                 'bathrooms': str(elem['bathrooms']),
                 'status': elem['status'],
                 'lat' : str(elem['latitude']),
@@ -71,8 +94,8 @@ class CrawIdealistaAPI(Crawler):
                 'crawler': self.get_name()
             }
             entries.append(details)            
-        logger.debug('total: %d', jdata['total'])
-        logger.debug('processed %d', len(entries))
+        logger.info('total: %d', jdata['total'])
+        logger.info('processed %d', len(entries))
         return entries
 
 
