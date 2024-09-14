@@ -177,8 +177,23 @@ Preis: {price}
         builder.read_config(self)
         return builder.build()
     
+    def idealista_lat(self):
+        return self._get_idealista_lat()
+
+    def idealista_lon(self):
+        return self._get_idealista_lon()
+    
     def idealista_key(self):
         return self._get_idealista_api_key()
+    
+    def idealista_distance(self):
+        return self._get_idealista_distance()
+
+    def idealista_mq2(self):
+        return self._get_idealista_mq2()
+
+    def idealista_price(self):
+        return self._get_idealista_price()
 
     def idealista_secret(self):
         return self._get_idealista_api_secret()
@@ -282,9 +297,24 @@ Preis: {price}
     def apprise_urls(self):
         """Notification URLs for Apprise"""
         return self._read_yaml_path('apprise', [])
+    
+    def _get_idealista_lat(self):
+        return self._read_yaml_path("idealista.lat", "")
+
+    def _get_idealista_lon(self):
+        return self._read_yaml_path("idealista.lon", "")
 
     def _get_idealista_api_key(self):
         return self._read_yaml_path("idealista.apikey", "")        
+
+    def _get_idealista_price(self):
+        return self._read_yaml_path("idealista.price", "") 
+    
+    def _get_idealista_distance(self):
+        return self._read_yaml_path("idealista.distance", "")  
+
+    def _get_idealista_mq2(self):
+        return self._read_yaml_path("idealista.mq2", "")
 
     def _get_idealista_api_secret(self):
         return self._read_yaml_path("idealista.apisecret", "")     
