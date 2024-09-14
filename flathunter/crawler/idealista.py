@@ -17,48 +17,52 @@ class CrawIdealistaAPI(Crawler):
         super().__init__(config)
         self.config = config
         data = self.get_oauth_token()
-        print(data)
         self.ideal_token = data['access_token']
+        self.page = 1
 
     def get_oauth_token(self):
         url = "https://api.idealista.com/oauth/token"
         apikey= urllib.parse.quote_plus(self.config.idealista_key())
         secret= urllib.parse.quote_plus(self.config.idealista_secret())
         final = apikey + ':' + secret
-        # print(final)
         auth = base64.b64encode(final.encode())
-        # print(auth)
         params = urllib.parse.urlencode({'grant_type':'client_credentials'})
         headers = {'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8','Authorization' : 'Basic ' + auth.decode()}
-        # print(headers)
         content = rq.post(url,headers = headers, params=params)
-        # print(content.text)
         # bearer_token = json.loads(content.text)['access_token']
         return json.loads(content.text)
     
     def get_page(self, search_url, driver=None, page_no=None):
+        lat = str(self.config.idealista_lat())
+        lon = str(self.config.idealista_lon())
+        center = lat + ',' + lon
+        distance = self.config.idealista_distance()
+        price = self.config.idealista_price()
+        mq2 = self.config.idealista_mq2()
         post_data = {
-            'center': (None,'41.3884,2.1686'),
+            'center': (None,center),
             'propertyType':(None,'homes'),
-            'distance':(None,'15000'),
+            'distance':(None,distance),
             'locale':(None,'en'),
             'operation':(None,'sale'),
-            'maxItems': (None,'1000'),
-            'minSize': (None, '100'),
+            'maxItems': (None,'50'),
+            'minSize': (None, mq2),
             'flat': (None, True),
-            'maxPrice': (None, '200000'),
+            # 'exterior': (None, True ),
+            'maxPrice': (None, price),
             'order' : (None, 'publicationDate'),
             'sort' : (None, 'desc'),
             'furnished' : (None, 'furnished'),
+            'numPage' : (None, self.page),
             # 'bankOffer' : (None, True),
-            'elevator' : (None, True),
+            # 'elevator' : (None, False),
         }
 
         MYHEADERS = {
             'Authorization' : 'Bearer ' + self.ideal_token,       
         }
         logger.info('scannig url %s\n', search_url)
-        logger.debug('post data %s\n', post_data)
+        logger.info('post data %s\n', post_data)
         resp = requests.post(search_url, files=post_data, headers=MYHEADERS, timeout=30)
         if resp.status_code not in (200, 405):
             user_agent = 'Unknown'
@@ -71,9 +75,7 @@ class CrawIdealistaAPI(Crawler):
 
     def extract_data(self, jdata):
         entries = []
-        for elem in jdata['elementList']:
-            logger.info(elem)
-            
+        for elem in jdata['elementList']:            
             details = {
                 'id': int(elem['propertyCode']),
                 'image': elem.get('thumbnail'),
@@ -83,7 +85,7 @@ class CrawIdealistaAPI(Crawler):
                 'size': str(elem['size']),
                 'rooms': str(elem['rooms']),
                 'address': elem['address'],
-                'lift': str(elem['hasLift']),
+                'lift': str(elem.get('hasLift')),
                 'pricebyarea': str(elem['priceByArea']),
                 'neighborhood': str(elem.get('neighborhood')),
                 'district': str(elem.get('district')), # not available for op=sale
@@ -96,6 +98,10 @@ class CrawIdealistaAPI(Crawler):
             entries.append(details)            
         logger.info('total: %d', jdata['total'])
         logger.info('processed %d', len(entries))
+        logger.info(f"paginable {jdata['totalPages']}")
+        if self.page == int(jdata['totalPages']):
+            self.page = 1
+        else: self.page += 1
         return entries
 
 
