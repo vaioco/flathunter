@@ -182,4 +182,5 @@ class SenderTelegram(Processor, Notifier):
             status=expose.get('status', 'N/A'),
             lat=expose.get('lat', 'N/A'),
             long=expose.get('long', 'N/A'),
+            externalReference=expose.get('externalReference', 'N/A'),
         ).strip()
