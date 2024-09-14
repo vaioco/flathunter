@@ -39,11 +39,12 @@ class CrawIdealistaAPI(Crawler):
         distance = self.config.idealista_distance()
         price = self.config.idealista_price()
         mq2 = self.config.idealista_mq2()
+        locale = self.config.idealista_locale()
         post_data = {
             'center': (None,center),
             'propertyType':(None,'homes'),
             'distance':(None,distance),
-            'locale':(None,'en'),
+            'locale':(None,locale),
             'operation':(None,'sale'),
             'maxItems': (None,'50'),
             'minSize': (None, mq2),
@@ -75,7 +76,8 @@ class CrawIdealistaAPI(Crawler):
 
     def extract_data(self, jdata):
         entries = []
-        for elem in jdata['elementList']:            
+        for elem in jdata['elementList']:
+            logger.debug(elem)
             details = {
                 'id': int(elem['propertyCode']),
                 'image': elem.get('thumbnail'),
@@ -93,12 +95,13 @@ class CrawIdealistaAPI(Crawler):
                 'status': elem['status'],
                 'lat' : str(elem['latitude']),
                 'long' : str(elem['longitude']),
+                'externalReference' : str(elem.get('externalReference')),
                 'crawler': self.get_name()
             }
             entries.append(details)            
         logger.info('total: %d', jdata['total'])
         logger.info('processed %d', len(entries))
-        logger.info(f"paginable {jdata['totalPages']}")
+        logger.info(f"paginable: {self.page} / {jdata['totalPages']}")
         if self.page == int(jdata['totalPages']):
             self.page = 1
         else: self.page += 1
