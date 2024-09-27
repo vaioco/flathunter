@@ -10,7 +10,7 @@ from flathunter.captcha.captcha_solver import CaptchaSolver
 from flathunter.captcha.imagetyperz_solver import ImageTyperzSolver
 from flathunter.captcha.twocaptcha_solver import TwoCaptchaSolver
 from flathunter.crawler.kleinanzeigen import Kleinanzeigen
-from flathunter.crawler.idealista import Idealista, CrawIdealistaAPI
+from flathunter.crawler.idealista import Idealista, IdealistaAPI
 from flathunter.crawler.immobiliare import Immobiliare
 from flathunter.crawler.immobilienscout import Immobilienscout
 from flathunter.crawler.immowelt import Immowelt
@@ -132,7 +132,7 @@ Preis: {price}
             Idealista(self),
             MeineStadt(self),
             VrmImmo(self),
-            CrawIdealistaAPI(self)
+            IdealistaAPI(self)
         ]
 
     def check_deprecated(self):

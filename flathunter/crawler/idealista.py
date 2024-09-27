@@ -10,7 +10,7 @@ import base64
 import time
 from datetime import datetime, timedelta
 
-class CrawIdealistaAPI(Crawler):
+class IdealistaAPI(Crawler):
 
     APIv3URL = 'https://api.idealista.com/3.5/es/search'
     URL_PATTERN = re.compile(r'https://api\.idealista\.com')
@@ -86,9 +86,9 @@ class CrawIdealistaAPI(Crawler):
         self.counter += 1
         return resp.json()   
 
-    def extract_data(self, jdata):
+    def extract_data(self, soup):
         entries = []
-        for elem in jdata['elementList']:
+        for elem in soup['elementList']:
             logger.debug(elem)
             details = {
                 'id': int(elem['propertyCode']),
@@ -111,10 +111,10 @@ class CrawIdealistaAPI(Crawler):
                 'crawler': self.get_name()
             }
             entries.append(details)            
-        logger.info('total: %d', jdata['total'])
+        logger.info('total: %d', soup['total'])
         logger.info('processed %d', len(entries))
-        logger.info(f"paginable: {self.page} / {jdata['totalPages']}")
-        if self.page == int(jdata['totalPages']):
+        logger.info(f"paginable: {self.page} / {soup['totalPages']}")
+        if self.page == int(soup['totalPages']):
             self.page = 1
         else: self.page += 1
         return entries
