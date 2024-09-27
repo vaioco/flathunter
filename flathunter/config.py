@@ -10,7 +10,7 @@ from flathunter.captcha.captcha_solver import CaptchaSolver
 from flathunter.captcha.imagetyperz_solver import ImageTyperzSolver
 from flathunter.captcha.twocaptcha_solver import TwoCaptchaSolver
 from flathunter.crawler.kleinanzeigen import Kleinanzeigen
-from flathunter.crawler.idealista import Idealista
+from flathunter.crawler.idealista import Idealista, CrawIdealistaAPI
 from flathunter.crawler.immobiliare import Immobiliare
 from flathunter.crawler.immobilienscout import Immobilienscout
 from flathunter.crawler.immowelt import Immowelt
@@ -131,7 +131,8 @@ Preis: {price}
             Immobiliare(self),
             Idealista(self),
             MeineStadt(self),
-            VrmImmo(self)
+            VrmImmo(self),
+            CrawIdealistaAPI(self)
         ]
 
     def check_deprecated(self):
@@ -182,6 +183,33 @@ Preis: {price}
         builder = Filter.builder()
         builder.read_config(self)
         return builder.build()
+
+    def idealista_rate(self):
+        return self._get_idealista_rate()
+
+    def idealista_locale(self):
+        return self._get_idealista_locale()
+
+    def idealista_lat(self):
+        return self._get_idealista_lat()
+
+    def idealista_lon(self):
+        return self._get_idealista_lon()
+    
+    def idealista_key(self):
+        return self._get_idealista_api_key()
+    
+    def idealista_distance(self):
+        return self._get_idealista_distance()
+
+    def idealista_mq2(self):
+        return self._get_idealista_mq2()
+
+    def idealista_price(self):
+        return self._get_idealista_price()
+
+    def idealista_secret(self):
+        return self._get_idealista_api_secret()
 
     def captcha_enabled(self):
         """Check if captcha is configured"""
@@ -283,6 +311,32 @@ Preis: {price}
         """Notification URLs for Apprise"""
         return self._read_yaml_path('apprise', [])
 
+    def _get_idealista_rate(self):
+        return self._read_yaml_path("idealista.rate", "")
+
+    def _get_idealista_locale(self):
+        return self._read_yaml_path("idealista.locale", "")
+
+    def _get_idealista_lat(self):
+        return self._read_yaml_path("idealista.lat", "")
+
+    def _get_idealista_lon(self):
+        return self._read_yaml_path("idealista.lon", "")
+
+    def _get_idealista_api_key(self):
+        return self._read_yaml_path("idealista.apikey", "")        
+
+    def _get_idealista_price(self):
+        return self._read_yaml_path("idealista.price", "") 
+    
+    def _get_idealista_distance(self):
+        return self._read_yaml_path("idealista.distance", "")  
+
+    def _get_idealista_mq2(self):
+        return self._read_yaml_path("idealista.mq2", "")
+
+    def _get_idealista_api_secret(self):
+        return self._read_yaml_path("idealista.apisecret", "")     
     def apprise_notify_with_images(self) -> bool:
         """True if images should be sent along with notifications"""
         flag = str(self._read_yaml_path(
@@ -387,6 +441,8 @@ Preis: {price}
             "telegram_bot_token": elide(self.telegram_bot_token()),
             "target_urls": self.target_urls(),
             "use_proxy": self.use_proxy(),
+            "idealista_secret": self._get_idealista_api_secret(),
+            "idealista_key": self._get_idealista_api_key(),
         })
 
 

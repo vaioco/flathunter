@@ -94,6 +94,7 @@ processed_ids.db
 
 .idea/
 config.yaml
+config_torino.yaml
 
 # Vim
 .*.swp
