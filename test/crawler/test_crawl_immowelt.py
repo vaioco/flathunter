@@ -1,18 +1,20 @@
 import pytest
 
-from flathunter.crawler.ebaykleinanzeigen import CrawlEbayKleinanzeigen
+from flathunter.crawler.immowelt import Immowelt
+from test.test_util import count
 from test.utils.config import StringConfig
 
 DUMMY_CONFIG = """
 urls:
-  - https://www.kleinanzeigen.de/s-wohnung-mieten/muenchen/anbieter:privat/anzeige:angebote/preis:600:1000
+  - https://www.immowelt.de/liste/muenchen/wohnungen/mieten?roomi=2&primi=600&prima=1000
     """
 
-TEST_URL = 'https://www.kleinanzeigen.de/s-wohnung-mieten/berlin/preis:1000:1500/c203l3331+wohnung_mieten.qm_d:70,+wohnung_mieten.zimmer_d:2'
+TEST_URL = 'https://www.immowelt.de/liste/berlin/wohnungen/mieten?roomi=2&prima=1500&wflmi=70&sort=createdate%2Bdesc'
 
 @pytest.fixture
 def crawler():
-    return CrawlEbayKleinanzeigen(StringConfig(string=DUMMY_CONFIG))
+    return Immowelt(StringConfig(string=DUMMY_CONFIG))
+
 
 def test_crawler(crawler):
     soup = crawler.get_page(TEST_URL)
@@ -20,10 +22,14 @@ def test_crawler(crawler):
     entries = crawler.extract_data(soup)
     assert entries is not None
     assert len(entries) > 0
-    assert entries[0]['id'] > 0
-    assert entries[0]['url'].startswith("https://www.kleinanzeigen.de/s-anzeige")
+    assert entries[0]['id']
+    assert entries[0]['url'].startswith("https://www.immowelt.de/expose")
     for attr in [ 'title', 'price', 'size', 'rooms', 'address' ]:
-        assert entries[0][attr]
+        assert entries[0][attr] is not None
+
+def test_dont_crawl_other_urls(crawler):
+    exposes = crawler.crawl("https://www.example.com")
+    assert count(exposes) == 0
 
 def test_process_expose_fetches_details(crawler):
     soup = crawler.get_page(TEST_URL)
@@ -35,4 +41,4 @@ def test_process_expose_fetches_details(crawler):
     for expose in updated_entries:
         print(expose)
         for attr in [ 'title', 'price', 'size', 'rooms', 'address', 'from' ]:
-            assert expose[attr]
+            assert expose[attr] is not None

@@ -6,7 +6,7 @@ from requests_mock import Mocker
 from test.utils.request_matcher import RequestCounter
 from test.utils.config import StringConfig
 
-from flathunter.sender_telegram import SenderTelegram
+from flathunter.notifiers import SenderTelegram
 
 
 class SenderTelegramTest(unittest.TestCase):

@@ -17,7 +17,7 @@ loop:
 
 # List the URLs containing your filter properties below.
 # Currently supported services: www.immobilienscout24.de,
-# www.immowelt.de, www.wg-gesucht.de, and www.kleinanzeigen.de.
+# www.immowelt.de, www.wg-gesucht.de, www.kleinanzeigen.de, meinestadt.de and vrm-immo.de.
 # List the URLs in the following format:
 # urls:
 # 	- https://www.immobilienscout24.de/Suche/...
@@ -55,14 +55,14 @@ filters:
 # displaying the distance and time to travel (duration) to
 # some configured other addresses, for specific kinds of
 # travel.
-#  
+#
 # Available kinds of travel ('gm_id') can be found in the
 # Google Maps API documentation, but basically there are:
 #	- "bicycling"
 #	- "transit" (public transport)
 #	- "driving"
 # - "walking"
-# 
+#
 # The example configuration below includes a place for
 # "John", located at the main train station of munich.
 # Two kinds of travel (bicycle and transit) are requested,
@@ -85,10 +85,11 @@ filters:
 #       - gm_id: driving
 #         title: "Auto"
 
-# Multiline message (yes, the | is supposed to be there), 
-# to format the message received from the Telegram bot. 
-# 
+# Multiline string (yes, the | is supposed to be there),
+# to format the message received from Telegram or Apprise.
+#
 # Available placeholders:
+#   - {crawler}: The name of the crawler
 # 	- {title}: The title of the expose
 #	- {rooms}: Number of rooms
 #	- {price}: Price for the flat
@@ -103,9 +104,14 @@ message: |
 
     {url}
 
-# Calculating durations requires access to the Google Maps API. 
+# (Multiline) string to format the title for the message received from Apprise.
+#
+# For available placeholders see above
+title: "{crawler}: {title}"
+
+# Calculating durations requires access to the Google Maps API.
 # Below you can configure the URL to access the API, with placeholders.
-# The URL should most probably just kept like that. 
+# The URL should most probably just kept like that.
 # To use the Google Maps API, an API key is required. You can obtain one
 # without costs from the Google App Console (just google for it).
 # Additionally, to enable the API calls in the code, set the 'enable' key to True
@@ -115,10 +121,10 @@ message: |
 #   url: https://maps.googleapis.com/maps/api/distancematrix/json?origins={origin}&destinations={dest}&mode={mode}&sensor=true&key={key}&arrival_time={arrival}
 #   enable: False
 
-# If you are planning to scrape immoscout24.de, the bot will need 
-# to circumvent the sites captcha protection by using a captcha 
-# solving service. Register at either imagetypers or 2captcha 
-# (the former is prefered), desposit some funds, uncomment the 
+# If you are planning to scrape immoscout24.de, the bot will need
+# to circumvent the sites captcha protection by using a captcha
+# solving service. Register at either imagetypers or 2captcha
+# (the former is prefered), desposit some funds, uncomment the
 # corresponding lines below and replace your API key/token.
 # Use driver_arguments to provide options for Chrome WebDriver.
 # captcha:
@@ -131,7 +137,7 @@ message: |
 captcha:
 
 # You can select whether to be notified by telegram, apprise or by mattermost
-# or Slack webhooks. For all notifiers selected here a configuration must be 
+# or Slack webhooks. For all notifiers selected here a configuration must be
 # provided below.
 # notifiers:
 #   - telegram
@@ -140,12 +146,12 @@ captcha:
 #   - slack
 notifiers:
 
-# Sending messages using Telegram requires a Telegram Bot configured. 
+# Sending messages using Telegram requires a Telegram Bot configured.
 # Telegram.org offers a good documentation about how to create a bot.
 # Once you read it, will make sense. Still: bot_token should hold the
 # access token of your bot and receiver_ids should list the client ids
 # of receivers. Note that those receivers are required to already have
-# started a conversation with your bot. 
+# started a conversation with your bot.
 #
 # telegram:
 #   bot_token: 160165XXXXXXX....
@@ -168,14 +174,18 @@ mattermost:
 # You can find a description how to set up an Apprise url with the official
 # documentation: https://github.com/caronc/apprise
 # Signal notifications are documented here https://github.com/caronc/apprise/wiki/Notify_signal
+# When using the apprise-api (https://github.com/caronc/apprise-api) service,
+# set the limit to 6 images or increase the attachment limit in your apprise-api instance.
 #
 # apprise:
 #   - gotifys://...
 #   - mailto://..
 #   - signal://localhost:9922/{FromPhoneNo}
+# apprise_notify_with_images: true
+# apprise_image_limit: 6
 apprise:
 
-# Sending messages to a Slack channel requires a webhook url. You can find 
+# Sending messages to a Slack channel requires a webhook url. You can find
 # a guide on how to set up a Slack webhook in the official documentation:
 # https://api.slack.com/messaging/webhooks
 #

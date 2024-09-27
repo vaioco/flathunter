@@ -6,10 +6,7 @@ from flathunter.default_processors import AddressResolver
 from flathunter.default_processors import Filter
 from flathunter.default_processors import LambdaProcessor
 from flathunter.default_processors import CrawlExposeDetails
-from flathunter.sender_mattermost import SenderMattermost
-from flathunter.sender_apprise import SenderApprise
-from flathunter.sender_telegram import SenderTelegram
-from flathunter.sender_slack import SenderSlack
+from flathunter.notifiers import SenderMattermost, SenderTelegram, SenderApprise, SenderSlack
 from flathunter.gmaps_duration_processor import GMapsDurationProcessor
 from flathunter.idmaintainer import SaveAllExposesProcessor
 from flathunter.abstract_processor import Processor

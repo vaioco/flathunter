@@ -5,7 +5,7 @@ import json
 from flathunter.logging import logger
 from flathunter.abstract_crawler import Crawler
 
-class CrawlSubito(Crawler):
+class Subito(Crawler):
     """Implementation of Crawler interface for Subito"""
 
     URL_PATTERN = re.compile(r'https://www\.subito\.it')

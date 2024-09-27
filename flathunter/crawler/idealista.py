@@ -120,7 +120,7 @@ class CrawIdealistaAPI(Crawler):
         return entries
 
 
-class CrawlIdealista(Crawler):
+class Idealista(Crawler):
     """Implementation of Crawler interface for Idealista"""
 
     URL_PATTERN = re.compile(r'https://www\.idealista\.it')

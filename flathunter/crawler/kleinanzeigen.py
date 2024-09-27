@@ -1,14 +1,14 @@
-"""Expose crawler for Ebay Kleinanzeigen"""
+"""Expose crawler for Kleinanzeigen"""
 import re
 import datetime
 
 from bs4 import Tag
 
+from flathunter.webdriver_crawler import WebdriverCrawler
 from flathunter.logging import logger
-from flathunter.abstract_crawler import Crawler
 
-class CrawlEbayKleinanzeigen(Crawler):
-    """Implementation of Crawler interface for Ebay Kleinanzeigen"""
+class Kleinanzeigen(WebdriverCrawler):
+    """Implementation of Crawler interface for Kleinanzeigen"""
 
     URL_PATTERN = re.compile(r'https://www\.kleinanzeigen\.de')
     MONTHS = {
@@ -26,16 +26,8 @@ class CrawlEbayKleinanzeigen(Crawler):
         "Dezember": "12"
     }
 
-    def __init__(self, config):
-        super().__init__(config)
-        self.config = config
-
-    def get_page(self, search_url, driver=None, page_no=None):
-        """Applies a page number to a formatted search URL and fetches the exposes at that page"""
-        return self.get_soup_from_url(search_url)
-
     def get_expose_details(self, expose):
-        soup = self.get_page(expose['url'])
+        soup = self.get_page(expose['url'], self.get_driver())
         for detail in soup.find_all('li', {"class": "addetailslist--detail"}):
             if re.match(r'Verfügbar ab', detail.text):
                 date_string = re.match(r'(\w+) (\d{4})', detail.text)

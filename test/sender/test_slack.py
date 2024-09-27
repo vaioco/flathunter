@@ -2,7 +2,7 @@ import unittest
 
 import requests_mock
 
-from flathunter.sender_slack import SenderSlack
+from flathunter.notifiers import SenderSlack
 from flathunter.config import YamlConfig
 
 

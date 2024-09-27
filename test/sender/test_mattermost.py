@@ -2,7 +2,7 @@ import unittest
 
 import requests_mock
 
-from flathunter.sender_mattermost import SenderMattermost
+from flathunter.notifiers import SenderMattermost
 from flathunter.config import YamlConfig
 
 

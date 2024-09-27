@@ -4,7 +4,7 @@ import datetime
 import re
 
 from bs4 import BeautifulSoup, Tag
-from jsonpath_ng import parse
+from jsonpath_ng.ext import parse
 from selenium.common.exceptions import JavascriptException
 from selenium.webdriver import Chrome
 
@@ -29,13 +29,15 @@ def get_result_count(soup: BeautifulSoup) -> int:
         return 0
     return int(count_element.text.replace('.', ''))
 
-class CrawlImmobilienscout(Crawler):
+class Immobilienscout(Crawler):
     """Implementation of Crawler interface for ImmobilienScout"""
 
     URL_PATTERN = STATIC_URL_PATTERN
 
     JSON_PATH_PARSER_ENTRIES = parse("$..['resultlist.realEstate']")
-    JSON_PATH_PARSER_IMAGES = parse("$..galleryAttachments..['@href']")
+    JSON_PATH_PARSER_IMAGES = parse("$..galleryAttachments"
+                                    "..attachment[?'@xsi.type'=='common:Picture']"
+                                    "..['@href'].`sub(/(.*\\\\.jpe?g).*/, \\\\1)`")
 
     RESULT_LIMIT = 50
 
@@ -49,7 +51,7 @@ class CrawlImmobilienscout(Crawler):
         self.driver = None
         self.checkbox = False
         self.afterlogin_string = None
-        if "immoscout_cookie" in self.config:
+        if self.config.immoscout_cookie() is not None:
             self.set_cookie()
         if config.captcha_enabled():
             self.checkbox = config.get_captcha_checkbox()
@@ -127,10 +129,12 @@ class CrawlImmobilienscout(Crawler):
 
     def get_entries_from_json(self, json):
         """Get entries from JSON"""
-        return [
+        entries = [
             self.extract_entry_from_javascript(entry.value)
                 for entry in self.JSON_PATH_PARSER_ENTRIES.find(json)
         ]
+        logger.debug('Number of found entries: %d', len(entries))
+        return entries
 
     def extract_entry_from_javascript(self, entry):
         """Get single entry from JavaScript"""
@@ -145,10 +149,7 @@ class CrawlImmobilienscout(Crawler):
         #
         # After: https://pictures.immobilienscout24.de/listings/$$IMAGE_ID$$.jpg
 
-        images = [
-            image.value[:image.value.find(".jpg") + 4]
-                for image in self.JSON_PATH_PARSER_IMAGES.find(entry)
-            ]
+        images = [image.value for image in self.JSON_PATH_PARSER_IMAGES.find(entry)]
 
         object_id: int = int(entry.get("@id", 0))
         return {
@@ -168,7 +169,7 @@ class CrawlImmobilienscout(Crawler):
 
     def set_cookie(self):
         """Sets request header cookie parameter to identify as a logged in user"""
-        self.HEADERS['Cookie'] = f'reese84:${self.config["immoscout_cookie"]}'
+        self.HEADERS['Cookie'] = f'reese84:${self.config.immoscout_cookie()}'
 
     def get_page(self, search_url, driver=None, page_no=None):
         """Applies a page number to a formatted search URL and fetches the exposes at that page"""

@@ -1,17 +1,11 @@
-<div class="exposes row">
+<div class="exposes">
   {% for expose in exposes %}
-    <div class="col-md-4">
-      <div class="expose mx-1 my-3">
-        <p>{{ expose['price'] }}, {{expose['rooms']}} rooms, {{expose['size']}} from {{expose['from']}}</p>
-        <a href="{{ expose['url'] }}" target="_blank">
-          {% if expose['image'] %}
-            <img src="{{ expose['image'] }}">
-          {% else %}
-            <img src="/static/placeholder.png">
-          {% endif %}
-        </a>
-        <h3><a href="{{ expose['url'] }}" rel="noreferrer" target="_blank">{{ expose['title'] }}</a></h3>
-      </div>
-    </div>
+    <a class="expose" href="{{ expose['url'] }}" rel="noreferrer" target="_blank">
+      <p>{{ expose['price'] }}, {{expose['rooms']}} rooms, {{expose['size']}} from {{expose['from']}}</p>
+
+      <img src="{{ expose['image'] if expose['image'] else url_for('static', filename='placeholder.png') }}">
+
+      <h3>{{ expose['title'] }}</h3>
+    </a>
   {% endfor %}
 </div>

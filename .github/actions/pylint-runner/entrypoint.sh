@@ -5,7 +5,7 @@ set -u
 pipenv requirements > requirements.txt
 pip install -r requirements.txt
 
-pylint_runner
+pylint flathunter
 pylint_runner_exit_code=$?
 
 if [ $(( $pylint_runner_exit_code & 32 )) != 0 ] || # usage error

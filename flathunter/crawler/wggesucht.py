@@ -7,7 +7,6 @@ from bs4 import BeautifulSoup, Tag
 
 from flathunter.logging import logger
 from flathunter.abstract_crawler import Crawler
-from flathunter.string_utils import remove_prefix
 
 
 def get_title(title_row: Tag) -> str:
@@ -22,7 +21,7 @@ def get_url(title_row: Tag) -> Optional[str]:
             or not a_element.has_attr('href') \
             or not isinstance(a_element.attrs['href'], str):
         return None
-    return 'https://www.wg-gesucht.de/' + remove_prefix(a_element.attrs['href'], "/")
+    return 'https://www.wg-gesucht.de/' + a_element.attrs['href'].removeprefix("/")
 
 
 def extract_href_style(row: Tag) -> Optional[str]:
@@ -86,12 +85,22 @@ def get_size(numbers_row: Tag) -> List[str]:
         return []
     return re.findall(r'\d{1,4}\sm²', size_el.text)
 
+def is_verified_company(row: Tag) -> bool:
+    """Filter out ads from 'Verified Companies'"""
+    verified_el = row.find("span", {"class": "label_verified"})
+    if isinstance(verified_el, Tag):
+        return True
+    return False
 
+# pylint: disable=too-many-return-statements
 def parse_expose_element_to_details(row: Tag, crawler: str) -> Optional[Dict]:
     """Parse an Expose soup element to an Expose details dictionary"""
     title_row = row.find('h3', {"class": "truncate_title"})
     if title_row is None or not isinstance(title_row, Tag):
         logger.warning("No title found - skipping")
+        return None
+    if is_verified_company(row):
+        logger.warning("Advert found - skipping")
         return None
     title = get_title(title_row)
     url = get_url(title_row)
@@ -139,15 +148,19 @@ def parse_expose_element_to_details(row: Tag, crawler: str) -> Optional[Dict]:
 
 
 def liste_attribute_filter(element: Union[Tag, str]) -> bool:
-    """Return true for elements whose 'id' attribute starts with 'liste-'"""
+    """Return true for elements whose 'id' attribute starts with 'liste-' 
+    and are not contained in the 'premium_user_extra_list' container"""
     if not isinstance(element, Tag):
         return False
-    if "id" not in element.attrs:
+    if not element.attrs or "id" not in element.attrs:
         return False
-    return element.attrs["id"].startswith('liste-')
+    if not element.parent or not element.parent.attrs or "class" not in element.parent.attrs:
+        return False
+    return element.attrs["id"].startswith('liste-') and \
+        'premium_user_extra_list' not in element.parent.attrs["class"]
 
 
-class CrawlWgGesucht(Crawler):
+class WgGesucht(Crawler):
     """Implementation of Crawler interface for WgGesucht"""
 
     URL_PATTERN = re.compile(r'https://www\.wg-gesucht\.de')
@@ -166,7 +179,6 @@ class CrawlWgGesucht(Crawler):
             e for e in findings
             if isinstance(e, Tag) and e.has_attr('class') and not 'display-none' in e['class']
         ]
-
         for row in existing_findings:
             details = parse_expose_element_to_details(row, self.get_name())
             if details is None:
@@ -221,5 +233,5 @@ class CrawlWgGesucht(Crawler):
             elif re.search("g-recaptcha", driver.page_source):
                 self.resolve_recaptcha(
                     driver, checkbox, afterlogin_string or "")
-            return BeautifulSoup(driver.page_source, 'html.parser')
-        return BeautifulSoup(resp.content, 'html.parser')
+            return BeautifulSoup(driver.page_source, 'lxml')
+        return BeautifulSoup(resp.content, 'lxml')

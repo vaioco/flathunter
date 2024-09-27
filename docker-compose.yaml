@@ -4,6 +4,7 @@ services:
   bcn-app:
     image: flathunter-app
     container_name: flatshunter_barcellona
+    shm_size: 512M # Workaround to fix docker crashes because of to small /dev/shm
     platform: linux/amd64 # For M1 to install google-chrome-stable; However still crashes on M1 when launching chrome (selenium.common.exceptions.WebDriverException: Message: unknown error: unable to discover open window in chrome (Session info: headless chrome=109.0.5414.119))
     command: python flathunt.py
     restart: always

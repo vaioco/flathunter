@@ -1,26 +1,21 @@
 """Providing heartbeat messages"""
-from typing import Optional
-
 from flathunter.abstract_notifier import Notifier
 from flathunter.config import YamlConfig
 from flathunter.logging import logger
-from flathunter.sender_apprise import SenderApprise
-from flathunter.sender_mattermost import SenderMattermost
-from flathunter.sender_slack import SenderSlack
-from flathunter.sender_telegram import SenderTelegram
+from flathunter.notifiers import SenderApprise, SenderMattermost, SenderTelegram, SenderSlack
 from flathunter.exceptions import HeartbeatException
 
 
-def interval2counter(interval: str) -> Optional[int]:
+def interval2counter(interval: str) -> int:
     """Transform the string interval to sleeper counter frequencies"""
     if interval is None:
-        return None
+        return 0
     if interval.lower() == 'hour':
-        return 6
+        return 3600
     if interval.lower() == 'day':
-        return 144
+        return 86400
     if interval.lower() == 'week':
-        return 1008
+        return 604800
     raise HeartbeatException(
         "No valid heartbeat instruction received - no heartbeat messages will be sent.")
 
@@ -28,7 +23,7 @@ def interval2counter(interval: str) -> Optional[int]:
 class Heartbeat:
     """Will inform the user on regular intervals whether the bot is still alive"""
     notifier: Notifier
-    interval: Optional[int]
+    interval: int
 
     def __init__(self, config: YamlConfig, interval: str):
         notifiers = config.notifiers()
@@ -44,7 +39,7 @@ class Heartbeat:
         else:
             raise HeartbeatException("No notifier configured - check 'notifiers' config section!")
 
-        self.interval = interval2counter(interval)
+        self.interval = int(interval2counter(interval)/int(config.loop_period_seconds()))
 
     def send_heartbeat(self, counter) -> int:
         """Send a new heartbeat message"""
@@ -55,7 +50,7 @@ class Heartbeat:
             logger.info('Sending heartbeat message.')
             self.notifier.notify(
                 'Beep Boop. This is a heartbeat message. '
-                'Your bot is searching actively for flats.'
+                'Your bot is actively searching for flats.'
             )
             counter = 0
         return counter

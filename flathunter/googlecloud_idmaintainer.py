@@ -49,9 +49,12 @@ class GoogleCloudIdMaintainer:
         res = []
         for doc in self.database.collection('exposes') \
                 .order_by('created_sort').limit(10000).stream():
-            if doc.to_dict()['created_at'] < localized_datetime:
+            doc_as_dict = doc.to_dict()
+            if doc_as_dict is None:
+                continue
+            if doc_as_dict['created_at'] < localized_datetime:
                 break
-            res.append(doc.to_dict())
+            res.append(doc_as_dict)
         return res
 
     def get_recent_exposes(self, count, filter_set=None):
@@ -91,7 +94,10 @@ class GoogleCloudIdMaintainer:
         docs = self.database.collection('executions').order_by(
             'timestamp', direction=BaseQuery.DESCENDING).limit(1).stream()
         for doc in docs:
-            return doc.to_dict()['timestamp']
+            doc_as_dict = doc.to_dict()
+            if doc_as_dict is None:
+                return None
+            return doc_as_dict['timestamp']
 
     def update_last_run_time(self):
         """Updates the time of the last run in the database"""
