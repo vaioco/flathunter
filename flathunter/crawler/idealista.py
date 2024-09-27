@@ -7,18 +7,24 @@ from flathunter.abstract_crawler import Crawler
 import urllib
 import requests as rq
 import base64
+import time
+from datetime import datetime, timedelta
 
 class CrawIdealistaAPI(Crawler):
 
     APIv3URL = 'https://api.idealista.com/3.5/es/search'
     URL_PATTERN = re.compile(r'https://api\.idealista\.com')
     KEYS = ['propertyCode', 'thumbnail', 'url', 'title', 'price', 'size', 'rooms','district']
+    
     def __init__(self, config):
         super().__init__(config)
         self.config = config
         data = self.get_oauth_token()
         self.ideal_token = data['access_token']
         self.page = 1
+        self.counter = 0
+        self.max_req = 3
+        self.interval = 24 * 60 * 60 / self.max_req
 
     def get_oauth_token(self):
         url = "https://api.idealista.com/oauth/token"
@@ -33,6 +39,11 @@ class CrawIdealistaAPI(Crawler):
         return json.loads(content.text)
     
     def get_page(self, search_url, driver=None, page_no=None):
+
+        if self.counter != 0:
+            logger.info('sleeping..')
+            time.sleep(self.interval)
+
         lat = str(self.config.idealista_lat())
         lon = str(self.config.idealista_lon())
         center = lat + ',' + lon
@@ -72,6 +83,7 @@ class CrawIdealistaAPI(Crawler):
             logger.error("Got response (%i): %s\n%s",
                          resp.status_code, resp.content, user_agent)
         logger.info('got resp status %d \n', resp.status_code)
+        self.counter += 1
         return resp.json()   
 
     def extract_data(self, jdata):

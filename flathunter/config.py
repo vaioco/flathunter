@@ -177,6 +177,9 @@ Preis: {price}
         builder.read_config(self)
         return builder.build()
 
+    def idealista_rate(self):
+        return self._get_idealista_rate()
+
     def idealista_locale(self):
         return self._get_idealista_locale()
 
@@ -300,6 +303,9 @@ Preis: {price}
     def apprise_urls(self):
         """Notification URLs for Apprise"""
         return self._read_yaml_path('apprise', [])
+
+    def _get_idealista_rate(self):
+        return self._read_yaml_path("idealista.rate", "")
 
     def _get_idealista_locale(self):
         return self._read_yaml_path("idealista.locale", "")
