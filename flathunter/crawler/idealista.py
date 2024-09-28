@@ -9,6 +9,7 @@ import requests as rq
 import base64
 import time
 from datetime import datetime, timedelta
+from flathunter.web_stats import WebStats
 
 class IdealistaAPI(Crawler):
 
@@ -17,14 +18,15 @@ class IdealistaAPI(Crawler):
     KEYS = ['propertyCode', 'thumbnail', 'url', 'title', 'price', 'size', 'rooms','district']
     
     def __init__(self, config):
+        self.name : str = "IDEALISTA_CRAWLER"
         super().__init__(config)
         self.config = config
         data = self.get_oauth_token()
         self.ideal_token = data['access_token']
-        self.page = 1
-        self.counter = 0
+        self.page = 0
         self.max_req = 3
         self.interval = 24 * 60 * 60 / self.max_req
+        self.stats = WebStats(config, self.name)
 
     def get_oauth_token(self):
         url = "https://api.idealista.com/oauth/token"
@@ -39,11 +41,10 @@ class IdealistaAPI(Crawler):
         return json.loads(content.text)
     
     def get_page(self, search_url, driver=None, page_no=None):
-
-        if self.counter != 0:
-            logger.info('sleeping..')
-            time.sleep(self.interval)
-
+        if not self.stats.isGreenLight():
+            logger.info("sleeping....")
+            self.stats.parking()
+        self.stats.addRequest()
         lat = str(self.config.idealista_lat())
         lon = str(self.config.idealista_lon())
         center = lat + ',' + lon
@@ -82,9 +83,9 @@ class IdealistaAPI(Crawler):
                 user_agent = self.HEADERS['User-Agent']
             logger.error("Got response (%i): %s\n%s",
                          resp.status_code, resp.content, user_agent)
+            raise requests.exceptions.ConnectionError
         logger.info('got resp status %d \n', resp.status_code)
-        self.counter += 1
-        return resp.json()   
+        return resp.json()
 
     def extract_data(self, soup):
         entries = []
