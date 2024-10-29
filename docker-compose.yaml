@@ -1,29 +1,70 @@
 version: '3'
 
 services:
-  bcn-app:
+  serria-app:
+    build: .
     image: flathunter-app
-    container_name: flatshunter_barcellona
-    shm_size: 512M # Workaround to fix docker crashes because of to small /dev/shm
+    container_name: flatshunter_serria
     platform: linux/amd64 # For M1 to install google-chrome-stable; However still crashes on M1 when launching chrome (selenium.common.exceptions.WebDriverException: Message: unknown error: unable to discover open window in chrome (Session info: headless chrome=109.0.5414.119))
-    command: python flathunt.py
+    command: python flathunt.py --config config_serria.yaml
     restart: always
     environment:
-      # - FLATHUNTER_TARGET_URLS=https://www.immobilienscout24.de/Suche/...;https://www.wg-gesucht.de/...
-      # - FLATHUNTER_DATABASE_LOCATION=
-      # - FLATHUNTER_GOOGLE_CLOUD_PROJECT_ID=
-      # - FLATHUNTER_VERBOSE_LOG=
-      - FLATHUNTER_LOOP_PERIOD_SECONDS=600
-      # - FLATHUNTER_MESSAGE_FORMAT=
-      # - FLATHUNTER_NOTIFIERS=telegram,mattermost,slack...
-      # - FLATHUNTER_TELEGRAM_BOT_TOKEN=160165XXXXXXX:...
-      # - FLATHUNTER_TELEGRAM_RECEIVER_IDS=12345...
-      # - FLATHUNTER_MATTERMOST_WEBHOOK_URL=
-      # - FLATHUNTER_SLACK_WEBHOOK_URL=
-      # - FLATHUNTER_WEBSITE_SESSION_KEY=
-      # - FLATHUNTER_WEBSITE_DOMAIN=
-      # - FLATHUNTER_2CAPTCHA_KEY=
-      # - FLATHUNTER_IMAGETYPERZ_TOKEN=
-      # - FLATHUNTER_HEADLESS_BROWSER=yes
+      - FLATHUNTER_DATABASE_LOCATION=flats_bcn
     volumes:
       - ./:/usr/src/app # not ideal, but the only way to incorporate the database (processed_ids.db), which is currently created at runtime
+    networks:
+      - my_priv_network
+    depends_on:
+      - db  # Ensure the db service is started before the app
+
+  torino-app:
+    build: .
+    image: flathunter-app
+    container_name: flatshunter_torino
+    platform: linux/amd64 # For M1 to install google-chrome-stable; However still crashes on M1 when launching chrome (selenium.common.exceptions.WebDriverException: Message: unknown error: unable to discover open window in chrome (Session info: headless chrome=109.0.5414.119))
+    command: python flathunt.py --config config_torino.yaml
+    restart: always
+    environment:
+      - FLATHUNTER_DATABASE_LOCATION=flats_to
+    volumes:
+      - ./:/usr/src/app # not ideal, but the only way to incorporate the database (processed_ids.db), which is currently created at runtime
+    networks:
+      - my_priv_network
+    depends_on:
+      - db  # Ensure the db service is started before the app
+
+  bcn-app:
+    build: .
+    image: flathunter-app
+    container_name: flatshunter_barcellona
+    # shm_size: 512M # Workaround to fix docker crashes because of to small /dev/shm
+    platform: linux/amd64 # For M1 to install google-chrome-stable; However still crashes on M1 when launching chrome (selenium.common.exceptions.WebDriverException: Message: unknown error: unable to discover open window in chrome (Session info: headless chrome=109.0.5414.119))
+    command: python3 flathunt.py --config config_bcn.yaml
+    restart: always
+    environment:
+      - FLATHUNTER_DATABASE_LOCATION=flats_bcn
+    volumes:
+      - ./:/usr/src/app # not ideal, but the only way to incorporate the database (processed_ids.db), which is currently created at runtime
+    networks:
+      - my_priv_network
+    depends_on:
+      - db  # Ensure the db service is started before the app
+
+  db:
+    image: postgis/postgis
+    container_name: flatshunter_postgis
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: housing
+    networks:
+      - my_priv_network
+    volumes:
+      - ./db:/db
+      - ./db_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"  # Map host port 5433 to container's 5432
+
+networks:
+  my_priv_network:
+    external: true
