@@ -13,7 +13,7 @@ from flathunter.web_stats import WebStats
 
 class IdealistaAPI(Crawler):
 
-    APIv3URL = 'https://api.idealista.com/3.5/es/search'
+    # APIv3URL = 'https://api.idealista.com/3.5/es/search'
     URL_PATTERN = re.compile(r'https://api\.idealista\.com')
     KEYS = ['propertyCode', 'thumbnail', 'url', 'title', 'price', 'size', 'rooms','district']
     
@@ -23,7 +23,7 @@ class IdealistaAPI(Crawler):
         self.config = config
         data = self.get_oauth_token()
         self.ideal_token = data['access_token']
-        self.page = 0
+        self.page = 1
         self.max_req = 3
         self.interval = 24 * 60 * 60 / self.max_req
         self.stats = WebStats(config, self.name)
@@ -44,6 +44,8 @@ class IdealistaAPI(Crawler):
         if not self.stats.isGreenLight():
             logger.info("sleeping....")
             self.stats.parking()
+            data = self.get_oauth_token()
+            self.ideal_token = data['access_token']
         self.stats.addRequest()
         lat = str(self.config.idealista_lat())
         lon = str(self.config.idealista_lon())
@@ -70,9 +72,8 @@ class IdealistaAPI(Crawler):
             # 'bankOffer' : (None, True),
             # 'elevator' : (None, False),
         }
-
         MYHEADERS = {
-            'Authorization' : 'Bearer ' + self.ideal_token,       
+            'Authorization' : 'Bearer ' + self.ideal_token,
         }
         logger.info('scannig url %s\n', search_url)
         logger.info('post data %s\n', post_data)
@@ -111,7 +112,7 @@ class IdealistaAPI(Crawler):
                 'externalReference' : str(elem.get('externalReference')),
                 'crawler': self.get_name()
             }
-            entries.append(details)            
+            entries.append(details)
         logger.info('total: %d', soup['total'])
         logger.info('processed %d', len(entries))
         logger.info(f"paginable: {self.page} / {soup['totalPages']}")

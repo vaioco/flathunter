@@ -336,7 +336,8 @@ Preis: {price}
         return self._read_yaml_path("idealista.mq2", "")
 
     def _get_idealista_api_secret(self):
-        return self._read_yaml_path("idealista.apisecret", "")     
+        return self._read_yaml_path("idealista.apisecret", "")
+        
     def apprise_notify_with_images(self) -> bool:
         """True if images should be sent along with notifications"""
         flag = str(self._read_yaml_path(
