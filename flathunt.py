@@ -14,6 +14,9 @@ from flathunter.hunter import Hunter
 from flathunter.config import Config
 from flathunter.heartbeat import Heartbeat
 from flathunter.time_utils import wait_during_period
+from flathunter.database import db
+from flathunter.database.Idmaintainersql import IdMaintainerSQL
+from flathunter.database.db import DatabaseAlchemy
 
 __author__ = "Jan Harrie"
 __version__ = "1.0"
@@ -22,9 +25,16 @@ __email__ = "harrymcfly@protonmail.com"
 __status__ = "Production"
 
 
+
+
+
+
+
 def launch_flat_hunt(config, heartbeat: Heartbeat):
     """Starts the crawler / notification loop"""
-    id_watch = IdMaintainer(f'{config.database_location()}/processed_ids.db')
+    # id_watch = IdMaintainer(f'{config.database_location()}/processed_ids.db')
+    db_singleton = DatabaseAlchemy(config.database_location())
+    id_watch = IdMaintainerSQL(db_singleton)
 
     time_from = dtime.fromisoformat(config.loop_pause_from())
     time_till = dtime.fromisoformat(config.loop_pause_till())
@@ -59,6 +69,8 @@ def main():
 
     # initialize search plugins for config
     config.init_searchers()
+    
+    
 
     # check config
     notifiers = config.notifiers()
